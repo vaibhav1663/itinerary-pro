@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import MapShow from "./MapShow";
 import { db } from "../firebase";
-import { collection, getDoc, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";

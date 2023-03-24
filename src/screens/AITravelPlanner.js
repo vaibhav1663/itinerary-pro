@@ -1,19 +1,9 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
-import Map from "./Map";
 import MapShow from "./MapShow";
 import html2pdf from "html2pdf.js";
-import Axios from "axios";
-import {
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  Divider,
-} from "@mui/material";
 import Weather from "./Weather";
 import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
