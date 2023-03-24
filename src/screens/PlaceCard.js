@@ -21,7 +21,7 @@ export default function MediaCard(props) {
         <Typography variant="body2">
           {props.info.desc}
         </Typography>
-        {props.info.travelDur[0]!="" && <Typography variant="h8">
+        {props.info.travelDur[0]!=="" && <Typography variant="h8">
           Travel Duration: more than {props.info.travelDur[0]} hours
           Budget: {props.info.budget} for {props.info.budgetFor} nights
         </Typography>}

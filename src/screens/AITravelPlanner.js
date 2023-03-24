@@ -769,7 +769,6 @@ const AITravelPlanner = () => {
         setLoading(false);
       });
   };
-  {alert(process.env.MAPKEY, process.env.REACT_APP_OPENAI_ENDPOINT_URL)}
 
   return (
     <>

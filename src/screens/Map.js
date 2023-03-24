@@ -29,7 +29,7 @@ const Map = (props) => {
     const [minTemp, setMinTemp] = React.useState("");
     const [phrase, setPhrase] = React.useState("");
     const [find, setFind] = useState(false);
-    var website = "https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
+    var website = "https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.MAPKEY}`;
     var msg = "";
     useEffect(() => {
         if (city !== '') {
@@ -50,8 +50,8 @@ const Map = (props) => {
         } else {
             setLocid(0)
         }
-
     }, [city])
+
     useEffect(() => {
         if (locid !== 0) {
             const options = {
@@ -86,32 +86,32 @@ const Map = (props) => {
         setType(newType);
     };
     if (city === "") {
-        website = `https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.MAPKEY}`;
         msg = "Type City name to view more";
     }
     else if (type === "") {
-        website = `https://www.google.com/maps/embed/v1/place?q=" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/place?q=" + city + "&key=${process.env.MAPKEY}`;
         msg = "Showing Map of " + city;
     } else if (type === "bus") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Bus+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=Bus+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Bus Stops in " + city + " will be highlighted";
     }
     else if (type === "rail") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Railways+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=Railways+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Train and Metro Stops in " + city + " will be highlighted";
     } else if (type === "air") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Airports+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=Airports+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Airports in " + city + " will be highlighted";
     } else if (type === "hotels") {
-        website = `https://www.google.com/maps/embed/v1/search?q=hotels+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=hotels+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Hotels in " + city + " will be highlighted";
     } else if (type === "resto") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Restaurants in " + city + " will be highlighted";
     }
     if (type === "trial") {
-        // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
-        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" + city + "&key=${process.env.REACT_APP_MAPKEY}`;
+        // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
+        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" + city + "&key=${process.env.MAPKEY}`;
         msg = "Trial"
     }
 
