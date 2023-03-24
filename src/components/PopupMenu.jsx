@@ -6,8 +6,8 @@ const PopupMenu = ({ navlinks, popupState }) => {
     <>
       <nav
         className={`
-        fixed top-14 right-14 bg-white bg-opacity-70 opacity-100 z-50 backdrop-filter backdrop-blur-md rounded-lg w-44 h-auto py-5 px-6 flex lg:hidden items-center justify-center transition-transform duration-300 ${
-          popupState ? "lg:showpopup" : "lg:noshowpopup"
+        hidden fixed top-14 right-14 bg-white bg-opacity-70 opacity-100 z-50 backdrop-filter backdrop-blur-md rounded-lg w-44 h-auto py-5 px-6  lg:flex items-center justify-center transition-transform duration-300 ${
+          popupState ? "showpopup" : "noshowpopup"
         }
       `}
       >

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import MapShow from "./MapShow";
 import { db } from "../firebase";
 import { collection, getDoc, addDoc } from "firebase/firestore";
 
@@ -11,8 +12,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: stretch;
-  min-height: 100vh;
-  height: 100%;
+  max-height: 40vh;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -46,7 +46,6 @@ const MainContent = styled.div`
   background-size: 400% 400%;
   color: #fff;
   width: 100%;
-  height: 100%;
 
   animation: gradient 15s ease infinite;
   @keyframes gradient {
@@ -97,9 +96,10 @@ const FormContainer = styled.form`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow-y: scroll;
   max-height: 100vh;
-  top: 0;
 `;
 
 const Loading = styled.p`
@@ -185,7 +185,6 @@ const FormRow = styled.div`
 
 const ResponseContainer = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -310,9 +309,7 @@ const Panel = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  border: 1px solid #ccc;
   background-color: #fff;
-  position: fixed;
   width: 28%;
   top: 0;
   right: 0;
@@ -355,7 +352,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generater ⭐️</Title>
+    <Title>⭐️ AI Trip Generator ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
     <GenerateButton
       loading={loading}
@@ -365,7 +362,7 @@ const Main = ({ loading, response, onClick }) => (
       onClick={onClick}
     ></GenerateButton>
     <ResponseContainer>
-      {loading ? <Loading /> : response && <ResponseData response={response} />}
+      {loading ? <Loading /> : <></>}
     </ResponseContainer>
   </MainContent>
 );
@@ -373,38 +370,14 @@ const Main = ({ loading, response, onClick }) => (
 const ResponseData = ({ response }) => {
   //   console.log(response);
   return (
-    <ResponseContainer>
-      <ResponseTitle>
-        <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
-      </ResponseTitle>
+    <>
+      
       {/* <object data={response} type="application/pdf" width="100%" height="100%">
         <p>
           Alternative text - include a link <a href={response}>to the PDF!</a>
         </p>
       </object> */}
-      <ButtonContainer>
-        <ActionButton
-          onClick={() => {
-            // const blob = new Blob([response], {
-            //   type: "text/plain;charset=utf-8",
-            // });
-            // const url = URL.createObjectURL(blob);
-            let url = response;
-            const link = document.createElement("a");
-            link.setAttribute("href", url);
-            let responseArr = response.split("/");
-            link.setAttribute("download", responseArr[responseArr.length - 1]);
-            link.setAttribute("target", "_blank");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            return false;
-          }}
-        >
-          Download
-        </ActionButton>
-      </ButtonContainer>
-    </ResponseContainer>
+    </>
   );
 };
 
@@ -577,6 +550,7 @@ const AIConciseTrip = () => {
           </FormContainer>
         </Panel>
       </Container>
+      {<MapShow title="Maps" dst={values.destinationCountry}/>}
     </>
   );
 };

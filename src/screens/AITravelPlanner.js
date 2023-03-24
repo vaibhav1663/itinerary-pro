@@ -1054,7 +1054,7 @@ const AITravelPlanner = () => {
                 sx={{
                   width: "50px",
                 }}
-                alt="The house from the offer."
+                alt="Scroll down to maps"
                 src="maps"
                 onClick={scrollDown}
               />
@@ -1063,27 +1063,6 @@ const AITravelPlanner = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
-      <List
-        sx={{
-          width: '100%',
-          maxWidth: 360,
-          bgcolor: 'background.paper',
-        }}
-      >
-        {weather.map((row) => (
-          <>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar src={"https://developer.foreca.com/static/images/symbols/" + row.symbol + ".png"}>
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={row.symbolPhrase+" "+ row.minTemp + "/" + row.maxTemp+ "C"} secondary={row.date} />
-        </ListItem>
-        <Divider variant="inset" component="li" />
-        </>
-        ))}
-        
-      </List>
     </>
   );
 };

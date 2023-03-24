@@ -1,9 +1,11 @@
-import { Box,  Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
+import { Box, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import sources from "../sources.json"
 import seasons from "../seasons.json"
 import themesJSON from "../themes.json"
 import MediaCard from "./PlaceCard";
+import BasicCard from "./PlaceCard2";
+import ComboBox from "./MenuOption";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,10 +20,10 @@ const MenuProps = {
 
 export default function ThirdItinerary() {
     // Form for User Input
-    const [from, setFrom] = useState("");
+    const [from, setFrom] = useState('');
     const [season, setSeason] = useState([]);
     const [themes, setThemes] = useState([]);
-    const [loc, setLoc] = useState("");
+    const [loc, setLoc] = useState('');
     const [budget, setBudget] = useState(100000000000000);
     const [travelDura, setTravelDur] = useState(64);
     const [iti, setIti] = useState([]);
@@ -62,12 +64,12 @@ export default function ThirdItinerary() {
         setFrom(e.target.value);
     };
 
-    function parseBudget(budgetFor){
+    function parseBudget(budgetFor) {
         console.log(budgetFor.split(" ")[2]);
         return budgetFor.split(" ")[2]
     }
 
-    function parseTravelDur(travelDur){
+    function parseTravelDur(travelDur) {
         let split = travelDur.split(" ")
         console.log(travelDur.split(" "));
         split = split.map((tok) => {
@@ -141,114 +143,135 @@ export default function ThirdItinerary() {
         getTrips();
     }, [from, season, themes, loc])
 
+    const [age, setAge] = useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
     return (
         <>
-            <h1>Third Party Itineraries</h1>
+            <div className="relative my-7 md:mt-3 md:ml-10">
+                <div className="travigo-container">
+                    <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+                        <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
+                            Itineraries from Others
+                        </h1>
+                    </div>
+                </div>
+            </div>
             <Box component="form">
                 <Grid container direction={"row"} justifyContent={"center"}>
                     <Grid item>
-                        <InputLabel id="demo-simple-select-label">Traveling from</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            label="Age"
-                            value={from}
-                            onChange={handleFrom}
-                        >
-                            {sources.cityList.map((city) => {
-                                return (
-                                    <MenuItem value={`${city.poiId}`}>{city.name}, {city.subText}</MenuItem>
-                                )
-                            })}
-                        </Select>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 180 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Travelling From</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={from}
+                                onChange={handleFrom}
+                                MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                            >
+                                {sources.cityList.map((city) => {
+                                    return (
+                                        <MenuItem value={`${city.poiId}`}>{city.name}, {city.subText}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item>
-                    <InputLabel id="demo-multiple-name-label">Season</InputLabel>
-                        <Select
-                            labelId="demo-multiple-name-label"
-                            label="Season"
-                            id="demo-multiple-name"
-                            multiple
-                            value={season}
-                            onChange={handleSeason}
-                            MenuProps={MenuProps}
-                            helperText="Hello"
-                        >
-                            {Object.values(seasons).map((s) => {
-                                return (
-                                    <MenuItem value={`${s.val}`}>{s.name}</MenuItem>
-                                )
-                            })}
-                        </Select>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 180, maxWidth: 300 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Seasons</InputLabel>
+                            <Select
+                                multiple
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={season}
+                                onChange={handleSeason}
+                                MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                            >
+                                {Object.values(seasons).map((s) => {
+                                    return (
+                                        <MenuItem value={`${s.val}`}>{s.name}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item>
-                    <InputLabel id="demo-multiple-name-label">Themes</InputLabel>
-                        <Select
-                            labelId="demo-multiple-name-label"
-                            label="Theme"
-                            id="demo-multiple-name"
-                            multiple
-                            value={themes}
-                            onChange={handleThemes}
-                            input={<OutlinedInput label="Theme" />}
-                            MenuProps={MenuProps}
-                            helperText="Hello"
-                        >
-                            {Object.keys(themesJSON["themes"]).map((where) => {
-                                return (
-                                    <MenuItem value={`${themesJSON.themes[where]}`}>{where}</MenuItem>
-                                )
-                            })}
-                        </Select>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 180, maxWidth: 300 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Themes</InputLabel>
+                            <Select
+                                multiple
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={themes}
+                                onChange={handleThemes}
+                                MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                            >
+                                {Object.keys(themesJSON["themes"]).map((where) => {
+                                    return (
+                                        <MenuItem value={`${themesJSON.themes[where]}`}>{where}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item>
-                    <InputLabel id="demo-multiple-name-label">Location</InputLabel>
-                        <Select
-                            labelId="demo-multiple-name-label"
-                            label="Location"
-                            id="demo-multiple-name"
-                            value={loc}
-                            onChange={handleLoc}
-                            input={<OutlinedInput label="Name" />}
-                            MenuProps={MenuProps}
-                            helperText="Hello"
-                        >
-                            {Object.keys(themesJSON["where"]).map((where) => {
-                                return (
-                                    <MenuItem value={`${themesJSON.where[where]}`}>{where}</MenuItem>
-                                )
-                            })}
-                        </Select>
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 180, maxWidth: 300 }}>
+                            <InputLabel id="demo-simple-select-standard-label">Location</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-standard-label"
+                                id="demo-simple-select-standard"
+                                value={loc}
+                                onChange={handleLoc}
+                                MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
+                            >
+                                {Object.keys(themesJSON["where"]).map((where) => {
+                                    return (
+                                        <MenuItem value={`${themesJSON.where[where]}`}>{where}</MenuItem>
+                                    )
+                                })}
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item>
-                        <TextField
-                            label="Budget"
-                            type="number"
-                            onChange={handleBudget}
-                            InputProps={{ inputProps: { min: 1000} }}
-                        />
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 80 }}>
+                            <TextField
+                                label="Budget"
+                                type="number"
+                                onChange={handleBudget}
+                                sx={{ maxWidth: 100 }}
+                                InputProps={{ inputProps: { min: 1000 } }}
+                            />
+                        </FormControl>
                     </Grid>
                     <Grid item>
-                        <TextField
-                            label="Travel Duration (in hours)"
-                            type="number"
-                            onChange={handleTravelDur}
-                            InputProps={{ inputProps: { min: 1, max: 24 } }}
-                        />
+                        <FormControl variant="filled" sx={{ m: 1, minWidth: 180 }}>
+                            <TextField
+                                label="Travel Duration (in hours)"
+                                type="number"
+                                onChange={handleTravelDur}
+                                sx={{ maxWidth: 180 }}
+                                InputProps={{ inputProps: { min: 1, max: 24 } }}
+                            />
+                        </FormControl>
                     </Grid>
                 </Grid>
             </Box>
-            <Box>
+            <Box sx={{ display: "flex", justifyContent: "center" }} className={"bg-gradient-to-b from-emerald-500 to-green-500"}>
                 <Grid container
-                justifyContent={"center"}
-                    sx={{ maxHeight: `${800}px`, overflowY: "scroll" }}
+                    sx={{ maxHeight: `86vh`, overflowY: "scroll", maxWidth: `80vw`, marginTop: "16px", marginBottom: "16px" }}
+                    spacing={2}
+                    className={"scroll"}
                 >
                     {iti.map((recc) => {
                         console.log(recc.budget, budget);
-                        if (parseInt(recc.budget)<=(budget===""?100000000000000:budget) && (travelDura===""?64:travelDura)>=recc.travelDur[0]){
+                        if (parseInt(recc.budget) <= (budget === "" ? 100000000000000 : budget) && (travelDura === "" ? 64 : travelDura) >= recc.travelDur[0]) {
                             return (
                                 <Grid item>
-                                    <MediaCard info={recc} />
+                                    <BasicCard info={recc} />
                                 </Grid>
                             )
                         }

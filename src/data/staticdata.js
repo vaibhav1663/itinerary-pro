@@ -5,6 +5,7 @@ export const navlinks = [
   { link: "Home", id: "home", path: "/" },
   { link: "About", id: "about", path: "/AboutUs" },
   { link: "Explore", id: "explore", path: "/third_itinerary" },
+  { link: "Existing Itineraries", id: "existing_itineraries", path: "/existing_itinerary" },
   { link: "Contact", id: "contact", path: "/contact" },
   { link: "Profile", id: "profile", path: "/profile" },
 ];

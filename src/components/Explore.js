@@ -18,61 +18,51 @@ const Explore = ({ title }) => {
       placeImg: place1,
       location: "Nepal",
       link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`,
-      distance: " hour dirve",
     },
     {
       placeImg: place10,
       location: "Mount Abu",
-      link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`,
-      distance: " hour dirve",
+      link: `${base_url}plans/trip-to-2 days trip in mount abu-1677753407.4277527.pdf`,
     },
     {
       placeImg: place3,
       location: "Bali",
       link: `${base_url}plans/trip-to-Bali Indonesia -1677857491.290219.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place4,
       location: "Goa",
       link: `${base_url}plans/trip-to- goa-1677683052.7227485.pdf`,
-      distance: "our drive",
     },
     {
       placeImg: place5,
       location: "Munnar",
       link: `${base_url}plans/trip-to-3day trip to munnar-1677766821.896906.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place6,
       location: "Meghalaya",
       link: `${base_url}plans/trip-to- Meghalaya india -1677567018.3818476.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place7,
       location: "Kerala",
       link: `${base_url}plans/trip-to- kerala, hampi-1677569147.1092768.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place8,
       location: "Bangalore",
       link: `${base_url}plans/trip-to-1 day near Bangalore -1677861983.9344642.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place9,
       location: "Chennai",
       link: `${base_url}plans/trip-to-1 day trip in chennai-1677963366.6425345.pdf`,
-      distance: " hour drive",
     },
     {
       placeImg: place10,
       location: "Mysore",
       link: `${base_url}plans/trip-to-2 days mysore trip-1678804061.8047736.pdf`,
-      distance: " hour drive",
     },
   ];
   return (
@@ -89,7 +79,7 @@ const Explore = ({ title }) => {
               <Link to={val.link} target="_blank">
                 <div
                   key={i}
-                  className="flex items-center gap-5 sm:gap-3 rounded-lg hover:bg-emerald-300 transition-all duration-300 cursor-pointer hover:scale-105"
+                  className="flex items-center gap-5 rounded-lg hover:bg-emerald-300 transition-all duration-300 cursor-pointer hover:scale-105"
                 >
                   <div className="flex items-center">
                     <img

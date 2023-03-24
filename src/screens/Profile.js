@@ -63,7 +63,7 @@ const styles = {
     color: "#899499"
   }
 };
-const rows = [{name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24},{name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24},{name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24}];
+const rows = [{ name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }, { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }, { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }];
 export default function Profile() {
   const [history, setHistory] = React.useState([]);
 
@@ -81,18 +81,17 @@ export default function Profile() {
     const getHistory = async()=>{
       if(user){
         const ref = collection(db,user.uid);
-        const data = await getDocs(ref, orderBy("timestamp"))
+        const data = await getDocs(ref, orderBy( "timestamp"))
         setHistory(data.docs.map((doc) =>({...doc.data(), id: doc.id})))
       }
     };
     getHistory();
   }, [user])
-  
+
   return (
-    
+
 
     <>
-
       <CssBaseline>
         {/* BACKGROUND */}
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
@@ -167,12 +166,12 @@ export default function Profile() {
                           {history.map((row) => (
                             <StyledTableRow key={row.city}>
                               <StyledTableCell component="th" scope="row">
-                                {(""+new Date(row.timestamp)).substring(0,25)}
+                                {("" + new Date(row.timestamp)).substring(0, 25)}
                               </StyledTableCell>
                               <StyledTableCell align="right">{row.city}</StyledTableCell>
                               <StyledTableCell align="right">{row.duration}</StyledTableCell>
-                              <StyledTableCell align="right"><Link to={row.url} target="_blank"><FileOpenIcon/></Link></StyledTableCell>
-                            
+                              <StyledTableCell align="right"><Link to={row.url} target="_blank"><FileOpenIcon /></Link></StyledTableCell>
+
                             </StyledTableRow>
                           ))}
                         </TableBody>
