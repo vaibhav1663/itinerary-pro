@@ -6,35 +6,13 @@ import { collection, getDoc, addDoc } from "firebase/firestore";
 
 import { useUserAuth } from "../context/UserAuthContext";
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: stretch;
-  max-height: 40vh;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    height: auto;
-  }
-
-  &::-webkit-scrollbar {
-    display: none;
-    width: 0px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-`;
-
-const MainContent = styled.div`
-  flex-basis: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
   min-height: 100vh;
+  height: 100%;
   background-image: linear-gradient(
     to bottom right,
     #e9fdf9,
@@ -62,6 +40,27 @@ const MainContent = styled.div`
       background-position: 0% 50%;
     }
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+`;
+
+const MainContent = styled.div`
+  flex-basis: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  min-height: 100vh;
 
   @media screen and (max-width: 1320px) {
     flex-basis: 60%;
@@ -93,12 +92,15 @@ const Subtitle = styled.h2`
 `;
 
 const FormContainer = styled.form`
-  flex: 1;
   display: flex;
+  background-color: #fff;
   flex-direction: column;
   align-items: center;
+  color: #000;
   justify-content: center;
   overflow-y: scroll;
+  border-radius: 20px;
+  padding: 20px;
   max-height: 100vh;
 `;
 
@@ -309,7 +311,7 @@ const Panel = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background-color: #fff;
+  /* background-color: #fff; */
   width: 28%;
   top: 0;
   right: 0;
@@ -350,39 +352,60 @@ const defaultValues = {
   tripDuration: "3",
 };
 
-const Main = ({ loading, response, onClick }) => (
+const Main = ({ loading, response }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generator ⭐️</Title>
+    <Title>⭐️ AI Trip Generater ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
-    <GenerateButton
-      loading={loading}
-      type="submit"
-      disabled={loading}
-      className={loading ? "loading" : ""}
-      onClick={onClick}
-    ></GenerateButton>
-    <ResponseContainer>
-      {loading ? <Loading /> : <></>}
-    </ResponseContainer>
+
+    {loading ? <Loading /> : response && <ResponseData response={response} />}
   </MainContent>
 );
 
 const ResponseData = ({ response }) => {
   //   console.log(response);
   return (
-    <>
-      
+    <ResponseContainer>
+      <ResponseTitle>
+        <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
+      </ResponseTitle>
       {/* <object data={response} type="application/pdf" width="100%" height="100%">
         <p>
           Alternative text - include a link <a href={response}>to the PDF!</a>
         </p>
       </object> */}
-    </>
+      <ButtonContainer>
+        <ActionButton
+          className="button-emrald"
+          onClick={() => {
+            // const blob = new Blob([response], {
+            //   type: "text/plain;charset=utf-8",
+            // });
+            // const url = URL.createObjectURL(blob);
+            let url = response;
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            let responseArr = response.split("/");
+            link.setAttribute("download", responseArr[responseArr.length - 1]);
+            link.setAttribute("target", "_blank");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            return false;
+          }}
+        >
+          Download
+        </ActionButton>
+      </ButtonContainer>
+    </ResponseContainer>
   );
 };
 
 const GenerateButton = ({ loading, onClick }) => (
-  <Button onClick={onClick} disabled={loading} style={{ width: "20%" }}>
+  <Button
+    onClick={onClick}
+    disabled={loading}
+    style={{ width: "20%", minWidth: "fit-content", marginTop: "20px" }}
+  >
     {loading ? "Please wait..." : "Generate"}
   </Button>
 );
@@ -394,13 +417,13 @@ const AIConciseTrip = () => {
 
   const { user } = useUserAuth();
   var ref = "trash";
-  if(user && user.uid){
-    ref = collection(db, user && user.uid)
+  if (user && user.uid) {
+    ref = collection(db, user && user.uid);
   }
-  
+
   const addDocument = async (data) => {
     await addDoc(ref, data);
-    console.log("Uploaded")
+    console.log("Uploaded");
   };
 
   const handleChange = (e) => {
@@ -466,9 +489,13 @@ const AIConciseTrip = () => {
     if (data.status === "OK") {
       console.log("click", data.file_url);
       setResponse(data.file_url);
-      addDocument({ url: data.file_url, city: values.destinationCountry, duration: values.tripDuration, timestamp : Date.now()})
+      addDocument({
+        url: data.file_url,
+        city: values.destinationCountry,
+        duration: values.tripDuration,
+        timestamp: Date.now(),
+      });
     }
-
 
     setLoading(false);
   };
@@ -547,10 +574,17 @@ const AIConciseTrip = () => {
                 />
               </FormGroup>
             </FormRow>
+            <GenerateButton
+              loading={loading}
+              type="submit"
+              disabled={loading}
+              className={loading ? "loading" : ""}
+              onClick={handleSubmit}
+            ></GenerateButton>
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Maps" dst={values.destinationCountry}/>}
+      {<MapShow title="Maps" dst={values.destinationCountry} />}
     </>
   );
 };

@@ -5,14 +5,18 @@ export const navlinks = [
   { link: "Home", id: "home", path: "/" },
   { link: "About", id: "about", path: "/AboutUs" },
   { link: "Explore", id: "explore", path: "/third_itinerary" },
-  { link: "Existing Itineraries", id: "existing_itineraries", path: "/existing_itinerary" },
+  {
+    link: "Existing Itineraries",
+    id: "existing_itineraries",
+    path: "/existing_itinerary",
+  },
   { link: "Contact", id: "contact", path: "/contact" },
   { link: "Profile", id: "profile", path: "/profile" },
 ];
 
 export const hero = {
-  title: "Its a Big World Out",
-  subtitle: "Then, Go Explore",
+  title: "Tailored itineraries ",
+  subtitle: "for your dream trip",
   text: "We provide you always your dream places. We always make our customer happy by proving many choices.",
   btn1: "Get Started",
   btn2: "Get Demo",

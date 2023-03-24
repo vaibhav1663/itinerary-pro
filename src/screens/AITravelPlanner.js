@@ -6,7 +6,14 @@ import Map from "./Map";
 import MapShow from "./MapShow";
 import { useEffect } from "react";
 import Axios from "axios";
-import { List,ListItem, ListItemAvatar, Avatar, ListItemText, Divider }from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 
 const Container = styled.div`
   display: flex;
@@ -597,6 +604,7 @@ const ResponseData = ({ response }) => {
       </ResponseText>
       <ButtonContainer>
         <ActionButton
+          className="button-emrald"
           onClick={() => {
             const blob = new Blob([response], {
               type: "text/plain;charset=utf-8",
@@ -634,54 +642,67 @@ const AITravelPlanner = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(
     options.languages[0]
   );
-  const [weather, setWeather] = useState([])
+  const [weather, setWeather] = useState([]);
   const [locid, setLocid] = useState(0);
   useEffect(() => {
-    if (values.destinationCountry !== '') {
+    if (values.destinationCountry !== "") {
       const options = {
-        method: 'GET',
-        url: 'https://foreca-weather.p.rapidapi.com/location/search/' + (values.destinationCountry.split(' ')[0]).substring(0, values.destinationCountry.split(' ')[0].length - 1),
-        params: { lang: 'en', country: 'in' },
+        method: "GET",
+        url:
+          "https://foreca-weather.p.rapidapi.com/location/search/" +
+          values.destinationCountry
+            .split(" ")[0]
+            .substring(0, values.destinationCountry.split(" ")[0].length - 1),
+        params: { lang: "en", country: "in" },
         headers: {
-          'X-RapidAPI-Key': 'ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576',
-          'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
       };
-      console.log(values.destinationCountry)
-      Axios.request(options).then(function (response) {
-        setLocid(response.data.locations[0].id);
-        console.log(locid)
-      }).catch(function (error) {
-        console.error(error);
-      });
+      console.log(values.destinationCountry);
+      Axios.request(options)
+        .then(function (response) {
+          setLocid(response.data.locations[0].id);
+          console.log(locid);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     } else {
-      setLocid(0)
+      setLocid(0);
     }
-
-  }, [])
+  }, []);
   useEffect(() => {
     if (locid !== 0) {
       const options = {
-        method: 'GET',
-        url: 'https://foreca-weather.p.rapidapi.com/forecast/daily/' + locid,
-        params: { alt: '0', tempunit: 'C', windunit: 'MS', periods: '12', dataset: 'full' },
+        method: "GET",
+        url: "https://foreca-weather.p.rapidapi.com/forecast/daily/" + locid,
+        params: {
+          alt: "0",
+          tempunit: "C",
+          windunit: "MS",
+          periods: "12",
+          dataset: "full",
+        },
         headers: {
-          'X-RapidAPI-Key': 'ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576',
-          'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
       };
 
-      Axios.request(options).then(function (response) {
-        console.log(response.data.forecast);
-        setWeather(response.data.forecast);
-      }).catch(function (error) {
-        console.error(error);
-      });
+      Axios.request(options)
+        .then(function (response) {
+          console.log(response.data.forecast);
+          setWeather(response.data.forecast);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     } else {
-
     }
-
-  }, [locid])
+  }, [locid]);
 
   const handleCuisineTypeClick = (cuisineType) => {
     if (selectedCuisineTypes.includes(cuisineType)) {
@@ -1062,7 +1083,7 @@ const AITravelPlanner = () => {
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Maps" dst={values.destinationCountry} />}
+      {<MapShow title="Browse Map" dst={values.destinationCountry} />}
     </>
   );
 };
