@@ -22,7 +22,7 @@ const PopupMenu = ({ navlinks, popupState }) => {
               type="button"
               className="button-light sm:w-auto shadow-slate-300 rounded-lg"
             >
-              <NavLink to={`/DetailedTrip`}>AI Itinerary Generate</NavLink>
+              <NavLink to={`/ChooseAI`}>AI Itinerary</NavLink>
             </button>
           </li>
         </ul>

@@ -48,7 +48,7 @@ const Navbar = ({ navlinks }) => {
           <ul className="hidden items-center sm:hidden md:hidden xs:hidden lg:flex">
             <li>
               <button type="button" className="button-emrald px-7 text-base">
-                <NavLink to={`/DetailedTrip`}>AI Itinerary Generate</NavLink>
+                <NavLink to={`/ChooseAI`}>AI Itinerary</NavLink>
               </button>
             </li>
           </ul>
