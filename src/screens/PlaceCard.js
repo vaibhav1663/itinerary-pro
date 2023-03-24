@@ -16,11 +16,15 @@ export default function MediaCard(props) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {props.info.name} : {props.info.subText} | {props.info.dist}
+          {props.info.name} : {props.info.subText} | {props.info.dist} | {props.info.budget} | {props.info.budgetFor} | {props.info.travelDur[0]}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2">
           {props.info.desc}
         </Typography>
+        {props.info.travelDur[0]!="" && <Typography variant="h8">
+          Travel Duration: more than {props.info.travelDur[0]} hours
+          Budget: {props.info.budget} for {props.info.budgetFor} nights
+        </Typography>}
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>

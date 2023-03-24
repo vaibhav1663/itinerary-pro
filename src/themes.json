@@ -1,0 +1,21 @@
+{
+    "where": {
+        "Weekend Getaway": 30,
+        "Domestic": 34,
+        "International": 36,
+        "Anywhere": null
+    },
+	"themes": {
+        "Heritage": 12,
+        "Romantic": 46,
+        "Honeymoon": 48,
+        "Relaxation": 38,
+        "Adventure": 2,
+        "Beach": 4,
+        "Hills and Mountains": 6,
+        "Wildlife": 8,
+        "Pilgrimage": 40,
+        "Food": 20,
+        "Trek": 10
+    }
+}

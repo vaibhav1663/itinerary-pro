@@ -1,7 +1,8 @@
-import { Box, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
+import { Box, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import sources from "../sources.json"
 import seasons from "../seasons.json"
+import themesJSON from "../themes.json"
 import MediaCard from "./PlaceCard";
 
 const ITEM_HEIGHT = 48;
@@ -15,23 +16,14 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
-
 export default function ThirdItinerary() {
     // Form for User Input
     const [from, setFrom] = useState("");
     const [season, setSeason] = useState([]);
+    const [themes, setThemes] = useState([]);
+    const [loc, setLoc] = useState("");
+    const [budget, setBudget] = useState(100000000000000);
+    const [travelDura, setTravelDur] = useState(64);
     const [iti, setIti] = useState([]);
 
     const handleSeason = (event) => {
@@ -44,11 +36,46 @@ export default function ThirdItinerary() {
         );
     };
 
+    const handleThemes = (event) => {
+        const {
+            target: { value },
+        } = event;
+        setThemes(
+            // On autofill we get a stringified value.
+            typeof value === 'string' ? value.split(',') : value,
+        );
+    };
+
+    const handleLoc = (event) => {
+        setLoc(event.target.value);
+    };
+
+    const handleBudget = (event) => {
+        setBudget(event.target.value);
+    };
+
+    const handleTravelDur = (event) => {
+        setTravelDur(event.target.value);
+    };
+
     function handleFrom(e) {
         setFrom(e.target.value);
+    };
+
+    function parseBudget(budgetFor){
+        console.log(budgetFor.split(" ")[2]);
+        return budgetFor.split(" ")[2]
     }
 
-    console.log(from, season);
+    function parseTravelDur(travelDur){
+        let split = travelDur.split(" ")
+        console.log(travelDur.split(" "));
+        split = split.map((tok) => {
+            return tok.replace(/\D/g, '');
+        })
+        console.log(split);
+        return split
+    }
 
     useEffect(() => {
 
@@ -58,6 +85,8 @@ export default function ThirdItinerary() {
             let obj = JSON.parse("{\"autoSuggestTile\":null,\"queryId\":\"$4$$$$$$$$CTPNQ$\",\"schema\":\"id`ul`tt`tl`dt`td`tds`pr`ti`cp`sd`wl`prf`ct`sp\",\"delimiter\":\"`\",\"initial\":true,\"srcPoiId\":\"${}\",\"appliedFilterValues\":{\"catIds\":[],\"selQueryCat\":null,\"budget\":null,\"time\":null,\"season\":null},\"notReadQueryId\":true,\"collectionId\":null,\"deeplink\":false,\"timestamp\":1679632917272}")
             obj["appliedFilterValues"]["season"] = season
             obj["srcPoiId"] = from
+            obj["appliedFilterValues"]["catIds"] = themes
+            obj["appliedFilterValues"]["selQueryCat"] = loc
             console.log(JSON.stringify(obj));
             return obj
         }
@@ -94,8 +123,12 @@ export default function ThirdItinerary() {
                         desc: splitInfo[4],
                         dist: splitInfo[6],
                         id: splitInfo[9],
-                        redirect: splitInfo[14]
+                        redirect: splitInfo[14],
+                        budget: splitInfo[12],
+                        budgetFor: parseBudget(splitInfo[10]),
+                        travelDur: parseTravelDur(splitInfo[5]),
                     }
+                    console.log(splitInfo);
                     setIti((prev) => {
                         return (
                             [...prev, placeInfo]
@@ -106,7 +139,7 @@ export default function ThirdItinerary() {
         }
 
         getTrips();
-    }, [from, season])
+    }, [from, season, themes, loc])
 
     return (
         <>
@@ -118,8 +151,8 @@ export default function ThirdItinerary() {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={from}
                             label="Age"
+                            value={from}
                             onChange={handleFrom}
                         >
                             {sources.cityList.map((city) => {
@@ -138,7 +171,6 @@ export default function ThirdItinerary() {
                             multiple
                             value={season}
                             onChange={handleSeason}
-                            input={<OutlinedInput label="Name" />}
                             MenuProps={MenuProps}
                             helperText="Hello"
                         >
@@ -149,19 +181,80 @@ export default function ThirdItinerary() {
                             })}
                         </Select>
                     </Grid>
+                    <Grid item>
+                    <InputLabel id="demo-multiple-name-label">Themes</InputLabel>
+                        <Select
+                            labelId="demo-multiple-name-label"
+                            label="Theme"
+                            id="demo-multiple-name"
+                            multiple
+                            value={themes}
+                            onChange={handleThemes}
+                            input={<OutlinedInput label="Theme" />}
+                            MenuProps={MenuProps}
+                            helperText="Hello"
+                        >
+                            {Object.keys(themesJSON["themes"]).map((where) => {
+                                return (
+                                    <MenuItem value={`${themesJSON.themes[where]}`}>{where}</MenuItem>
+                                )
+                            })}
+                        </Select>
+                    </Grid>
+                    <Grid item>
+                    <InputLabel id="demo-multiple-name-label">Location</InputLabel>
+                        <Select
+                            labelId="demo-multiple-name-label"
+                            label="Location"
+                            id="demo-multiple-name"
+                            value={loc}
+                            onChange={handleLoc}
+                            input={<OutlinedInput label="Name" />}
+                            MenuProps={MenuProps}
+                            helperText="Hello"
+                        >
+                            {Object.keys(themesJSON["where"]).map((where) => {
+                                return (
+                                    <MenuItem value={`${themesJSON.where[where]}`}>{where}</MenuItem>
+                                )
+                            })}
+                        </Select>
+                    </Grid>
+                    <Grid item>
+                        <TextField
+                            label="Budget"
+                            type="number"
+                            onChange={handleBudget}
+                            InputProps={{ inputProps: { min: 1000} }}
+                        />
+                    </Grid>
+                    <Grid item>
+                        <TextField
+                            label="Travel Duration (in hours)"
+                            type="number"
+                            onChange={handleTravelDur}
+                            InputProps={{ inputProps: { min: 1, max: 24 } }}
+                        />
+                    </Grid>
                 </Grid>
             </Box>
-            <Grid container
-                
-            >
-                {iti.map((recc) => {
-                    return (
-                        <Grid item>
-                            <MediaCard info={recc} />
-                        </Grid>
-                    )
-                })}
-            </Grid>
+            <Box>
+                <Grid container
+                justifyContent={"center"}
+                    sx={{ maxHeight: `${800}px`, overflowY: "scroll" }}
+                >
+                    {iti.map((recc) => {
+                        console.log(recc.budget, budget);
+                        if (parseInt(recc.budget)<=(budget===""?100000000000000:budget) && (travelDura===""?64:travelDura)>=recc.travelDur[0]){
+                            return (
+                                <Grid item>
+                                    <MediaCard info={recc} />
+                                </Grid>
+                            )
+                        }
+                    })}
+                </Grid>
+            </Box>
         </>
     )
 }
