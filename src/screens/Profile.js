@@ -81,7 +81,7 @@ export default function Profile() {
     const getHistory = async()=>{
       if(user){
         const ref = collection(db,user.uid);
-        const data = await getDocs(ref, orderBy( "timestamp"))
+        const data = await getDocs(ref, orderBy("timestamp"))
         setHistory(data.docs.map((doc) =>({...doc.data(), id: doc.id})))
       }
     };
