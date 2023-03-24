@@ -854,7 +854,7 @@ const AITravelPlanner = () => {
       .then((data) => {
         setResponse(data.choices[0].message.content);
         console.log("click", data.choices[0].message.content);
-
+        
         setLoading(false);
         return data.choices[0].message.content
       })
