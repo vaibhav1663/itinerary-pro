@@ -778,6 +778,25 @@ const AITravelPlanner = () => {
     window.scrollTo(0, 980);
   }
 
+  function parseContent(content){
+    let split = content.split("\n");
+    let rem = false;
+    ["Unfortunately", "sorry", "Sorry", "unfortunately", "I cannot", "i cannot"].forEach((word) => {
+      if (split[0].includes(word)){
+        rem = true;
+        split[0] = "";
+        return;
+      }
+    })
+    let newContent = "";
+    split.forEach((sent) => {
+      if (sent!==""){
+        newContent += sent+"\n"
+      }
+    })
+    return newContent;
+  }
+
   const handleSubmit = (e) => {
     // e.preventDefault();
     setLoading(true);
@@ -792,9 +811,9 @@ const AITravelPlanner = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setResponse(data.choices[0].message.content);
-        console.log("click", data.choices[0].message.content);
-
+        const parsed = parseContent(data.choices[0].message.content);
+        setResponse(parsed);
+        console.log(data.choices[0].message.content);
         setLoading(false);
         return data.choices[0].message.content
       })
