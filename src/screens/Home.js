@@ -5,7 +5,6 @@ import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import Memory from "../components/Memory";
 import { hero, navlinks, memory } from "../data/staticdata.js";
-import TravelTweets from "./Tweets";
 export default function Home() {
   return (
     <>
@@ -13,7 +12,6 @@ export default function Home() {
       <Hero hero={hero} />
       <Explore title="Explore The Beauty of World" />
       <Memory memory={memory} />
-      <TravelTweets />
     </>
   );
 }
