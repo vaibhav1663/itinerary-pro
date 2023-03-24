@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import contents from "../itinerary.json"
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Grid, TextField } from "@mui/material";
@@ -41,7 +40,7 @@ const ExistingItinerary = () => {
     }
 
     return (
-        <div className='relative md:mt-3  bg-gradient-to-b from-emerald-50 to-white'>
+        <div className='relative md:mt-3  bg-gradient-to-t from-emerald-50 to-white'>
             <div className="travigo-container">
 
                 <div className="flex items-center justify-center text-center mb-11 md:mb-7">
