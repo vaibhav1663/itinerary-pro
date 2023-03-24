@@ -127,7 +127,7 @@ const Map = (props) => {
     msg = "Airports in " + city + " will be highlighted";
   } else if (type === "hotels") {
     website =
-      "https://www.google.com/maps/embed/v1/search?zzoom=14&q=hotels+in+" +
+      "https://www.google.com/maps/embed/v1/search?zoom=14&q=hotels+in+" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Hotels in " + city + " will be highlighted";
