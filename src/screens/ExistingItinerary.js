@@ -59,26 +59,20 @@ const ExistingItinerary = () => {
                         />
                     </div>
                     <br />
-                    <Grid
-                        container
-                        rowSpacing={3}
-                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-                        direction="row"
-                        justify="flex-start"
-                        alignItems="flex-start"
-                    >
+                    <div className="grid flex items-center grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-5">
+
                         {filteredList(content, search).map((city) => (
                             <Grid item xs={3} >
                                 <Link to={base_url + city.Key} target="_blank">
                                     <Card
-                                        sx={{ height: "8vw", Width: 275 }}
+                                        sx={{ height: "8vw" }}
                                         className="bg-gradient-to-b from-emerald-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter hover:scale-105 transition-all duration-400"
                                     >
                                         <CardContent>
                                             <Typography
                                                 variant="h5"
                                                 component="div"
-                                            // className="text-lg sm:text-sm font-bold"
+                                                className="lg:text-lg md:text-md sm:text-sm font-bold"
                                             >
                                                 {parseString(city.Key)}
                                             </Typography>
@@ -87,7 +81,7 @@ const ExistingItinerary = () => {
                                 </Link>
                             </Grid>
                         ))}
-                    </Grid>
+                    </div>
                 </div>
             </div>
         </>
