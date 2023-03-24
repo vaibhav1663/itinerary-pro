@@ -63,4 +63,18 @@
   .nav-sticky {
     @apply bg-white/80 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 flex items-center h-[9vh] fixed top-0 left-0 right-0 opacity-100 z-[100] shadow-sm shadow-slate-100;
   }
+  .scroll::-webkit-scrollbar {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(6, 6, 6) rgb(26, 26, 26);
+  }
+  .scroll::-webkit-scrollbar {
+    @apply w-1.5;
+  }
+  .scroll::-webkit-scrollbar-track {
+    @apply bg-gradient-to-b from-slate-100 to-gray-100;
+  }
+  .scroll::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-gradient-to-tr from-slate-500 to-gray-500;
+  }
 }

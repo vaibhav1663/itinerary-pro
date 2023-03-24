@@ -1002,7 +1002,7 @@ const AITravelPlanner = () => {
                 sx={{
                   width: "50px",
                 }}
-                alt="The house from the offer."
+                alt="Scroll down to maps"
                 src="maps"
                 onClick={scrollDown}
               />}
