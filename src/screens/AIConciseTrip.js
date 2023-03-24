@@ -37,11 +37,11 @@ const MainContent = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(
     to bottom right,
-    #1a1a1a,
-    #222222,
-    #333333,
-    #444444,
-    #555555
+    #e9fdf9,
+    #88f7e8,
+    #9af6e4,
+    #c2fa88,
+    #59c26c
   );
   background-size: 400% 400%;
   color: #fff;
@@ -355,7 +355,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generator ⭐️</Title>
+    <Title>⭐️ AI Trip Generater ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
     <GenerateButton
       loading={loading}

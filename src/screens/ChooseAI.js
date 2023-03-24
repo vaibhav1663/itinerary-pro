@@ -12,9 +12,7 @@ const ChooseAI = () => {
         >
           <h2 className="text-2xl font-bold mb-2">Concise Itinerary</h2>
           <p className="text-gray-600">
-            Enter only 3 details Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Dolor eveniet quia iusto voluptas, ipsa, eum illum
-            ratione! Sapiente, exercitationem modi pariatur architecto
+            Provides a succinct travel plan by taking into account the traveler's specified destination, budget, and duration of the trip.
           </p>
         </Link>
 
@@ -25,11 +23,7 @@ const ChooseAI = () => {
         >
           <h2 className="text-2xl font-bold mb-2">Detailed Itinerary</h2>
           <p className="text-gray-600">
-            Enter Large amount of Details Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Dolor eveniet quia iusto voluptas, ipsa,
-            aspernatur quisquam optio, suscipit ex quasi minus deleniti illo!
-            Tempora quia tenetur corrupti, quas temporibus placeat? Accusantium
-            dolores t
+            The AI generates a tailor-made itinerary on the traveler's chosen destination, budget, and duration of stay, all in the language of their choice. It considers the traveler's interests, activites and cuisine preferences while suggesting suitable accommodations to enhance the overall travel experience.
           </p>
         </Link>
       </div>

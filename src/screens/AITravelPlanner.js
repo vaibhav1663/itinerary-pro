@@ -35,11 +35,11 @@ const MainContent = styled.div`
   justify-content: start;
   background-image: linear-gradient(
     to bottom right,
-    #1a1a1a,
-    #222222,
-    #333333,
-    #444444,
-    #555555
+    #e9fdf9,
+    #88f7e8,
+    #9af6e4,
+    #c2fa88,
+    #59c26c
   );
   background-size: 400% 400%;
   color: #fff;
@@ -567,7 +567,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generator ⭐️</Title>
+    <Title>⭐️ AI Trip Generater ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
     <GenerateButton
       loading={loading}
@@ -577,7 +577,7 @@ const Main = ({ loading, response, onClick }) => (
       onClick={onClick}
     ></GenerateButton>
     <ResponseContainer>
-      {loading ? <Loading /> : response && <ResponseData response={response}/>}
+      {loading ? <Loading /> : response && <ResponseData response={response} />}
     </ResponseContainer>
   </MainContent>
 );
@@ -741,7 +741,7 @@ const AITravelPlanner = () => {
     }));
   };
 
-  function scrollDown(){
+  function scrollDown() {
     // console.log(document.body.scrollHeight);
     window.scrollTo(0, 980);
   }
@@ -997,7 +997,8 @@ const AITravelPlanner = () => {
                 ))}
               </LanguageRow>
             </LanguageSelectorContainer>
-            {<Box
+            {
+              <Box
                 component="img"
                 sx={{
                   width: "50px",
@@ -1005,11 +1006,12 @@ const AITravelPlanner = () => {
                 alt="The house from the offer."
                 src="maps"
                 onClick={scrollDown}
-              />}
+              />
+            }
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Maps" dst={values.destinationCountry}/>}
+      {<MapShow title="Maps" dst={values.destinationCountry} />}
     </>
   );
 };
