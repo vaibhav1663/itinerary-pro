@@ -6,6 +6,7 @@ import { collection, getDoc, addDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";
+import Weather from "./Weather";
 
 
 const Container = styled.div`
@@ -653,7 +654,8 @@ const AIConciseTrip = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
-      <div
+      {<Weather dst={values.destinationCountry} />}
+      {/* <div
         className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
       >
         <div className="travigo-container" style={{ paddingBottom: "50px" }}>
@@ -676,13 +678,12 @@ const AIConciseTrip = () => {
                     </div>
                   ))
               }
-
             </div>
           </div>
         </div>
 
 
-      </div>
+      </div> */}
     </>
   );
 };
