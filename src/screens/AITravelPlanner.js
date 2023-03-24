@@ -552,7 +552,7 @@ const topLocations = [
 ];
 
 const defaultValues = {
-  destinationCountry: options.destinationCountry[0],
+  destinationCountry: "",
   budget: "10000 INR",
   travelStyle: options.travelStyles[0],
   interestsNew: [],
@@ -745,7 +745,7 @@ const AITravelPlanner = () => {
     setLoading(true);
     let prompt = `Generate a personalized travel itinerary for a trip to ${values.destinationCountry} with a budget of ${values.budget}. The traveler is interested in a ${values.travelStyle} vacation and enjoys ${values.interestsNew}. They are looking for ${values.accommodationType} accommodations and prefer ${values.transportationType} transportation. The itinerary should include ${values.activityType} activities and ${values.cuisineType} dining options. Please provide a detailed itinerary with daily recommendations for ${values.tripDuration} days, including suggested destinations, activities, and dining options. The itinerary should be written in ${values.language}. `;
 
-    fetch(`${process.env.REACT_APP_ENDPOINT_URL}`, {
+    fetch(`${process.env.REACT_APP_OPENAI_ENDPOINT_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
