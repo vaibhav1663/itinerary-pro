@@ -13,6 +13,7 @@ import { UserAuthContextProvider } from "./context/UserAuthContext";
 import ProtectedRoute from "./screens/ProtectedRoute";
 import ExistingItinerary from "./screens/ExistingItinerary";
 import ChooseAI from "./screens/ChooseAI";
+import ContactUsPage from "./screens/ContactUs";
 
 function App() {
   return (
@@ -29,10 +30,18 @@ function App() {
               }
             />
             <Route
-              path="/about"
+              path="/AboutUs"
               element={
                 <ProtectedRoute>
                   <About />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/contact"
+              element={
+                <ProtectedRoute>
+                  <ContactUsPage />
                 </ProtectedRoute>
               }
             />
