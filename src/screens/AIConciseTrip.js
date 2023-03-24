@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import MapShow from "./MapShow";
 import { db } from "../firebase";
 import { collection, getDoc, addDoc } from "firebase/firestore";
 
 import { useUserAuth } from "../context/UserAuthContext";
-
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +13,33 @@ const Container = styled.div`
   align-items: stretch;
   min-height: 100vh;
   height: 100%;
+  background-image: linear-gradient(
+    to bottom right,
+    #e9fdf9,
+    #88f7e8,
+    #9af6e4,
+    #c2fa88,
+    #59c26c
+  );
+  background-size: 400% 400%;
+  color: #fff;
+  width: 100%;
 
+  animation: gradient 15s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    20% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
   @media (max-width: 768px) {
     flex-direction: column;
     height: auto;
@@ -35,34 +61,6 @@ const MainContent = styled.div`
   align-items: center;
   justify-content: start;
   min-height: 100vh;
-  background-image: linear-gradient(
-    to bottom right,
-    #e9fdf9,
-    #88f7e8,
-    #9af6e4,
-    #c2fa88,
-    #59c26c
-  );
-  background-size: 400% 400%;
-  color: #fff;
-  width: 100%;
-  height: 100%;
-
-  animation: gradient 15s ease infinite;
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
-    }
-    20% {
-      background-position: 50% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
   @media screen and (max-width: 1320px) {
     flex-basis: 60%;
@@ -94,12 +92,16 @@ const Subtitle = styled.h2`
 `;
 
 const FormContainer = styled.form`
-  flex: 1;
   display: flex;
+  background-color: #fff;
   flex-direction: column;
+  align-items: center;
+  color: #000;
+  justify-content: center;
   overflow-y: scroll;
+  border-radius: 20px;
+  padding: 20px;
   max-height: 100vh;
-  top: 0;
 `;
 
 const Loading = styled.p`
@@ -185,7 +187,6 @@ const FormRow = styled.div`
 
 const ResponseContainer = styled.div`
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -310,9 +311,7 @@ const Panel = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  position: fixed;
+  /* background-color: #fff; */
   width: 28%;
   top: 0;
   right: 0;
@@ -353,20 +352,12 @@ const defaultValues = {
   tripDuration: "3",
 };
 
-const Main = ({ loading, response, onClick }) => (
+const Main = ({ loading, response }) => (
   <MainContent>
     <Title>⭐️ AI Trip Generater ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
-    <GenerateButton
-      loading={loading}
-      type="submit"
-      disabled={loading}
-      className={loading ? "loading" : ""}
-      onClick={onClick}
-    ></GenerateButton>
-    <ResponseContainer>
-      {loading ? <Loading /> : response && <ResponseData response={response} />}
-    </ResponseContainer>
+
+    {loading ? <Loading /> : response && <ResponseData response={response} />}
   </MainContent>
 );
 
@@ -384,6 +375,7 @@ const ResponseData = ({ response }) => {
       </object> */}
       <ButtonContainer>
         <ActionButton
+          className="button-emrald"
           onClick={() => {
             // const blob = new Blob([response], {
             //   type: "text/plain;charset=utf-8",
@@ -409,7 +401,11 @@ const ResponseData = ({ response }) => {
 };
 
 const GenerateButton = ({ loading, onClick }) => (
-  <Button onClick={onClick} disabled={loading} style={{ width: "20%" }}>
+  <Button
+    onClick={onClick}
+    disabled={loading}
+    style={{ width: "20%", minWidth: "fit-content", marginTop: "20px" }}
+  >
     {loading ? "Please wait..." : "Generate"}
   </Button>
 );
@@ -421,13 +417,13 @@ const AIConciseTrip = () => {
 
   const { user } = useUserAuth();
   var ref = "trash";
-  if(user && user.uid){
-    ref = collection(db, user && user.uid)
+  if (user && user.uid) {
+    ref = collection(db, user && user.uid);
   }
-  
+
   const addDocument = async (data) => {
     await addDoc(ref, data);
-    console.log("Uploaded")
+    console.log("Uploaded");
   };
 
   const handleChange = (e) => {
@@ -493,9 +489,13 @@ const AIConciseTrip = () => {
     if (data.status === "OK") {
       console.log("click", data.file_url);
       setResponse(data.file_url);
-      addDocument({ url: data.file_url, city: values.destinationCountry, duration: values.tripDuration, timestamp : Date.now()})
+      addDocument({
+        url: data.file_url,
+        city: values.destinationCountry,
+        duration: values.tripDuration,
+        timestamp: Date.now(),
+      });
     }
-
 
     setLoading(false);
   };
@@ -574,9 +574,17 @@ const AIConciseTrip = () => {
                 />
               </FormGroup>
             </FormRow>
+            <GenerateButton
+              loading={loading}
+              type="submit"
+              disabled={loading}
+              className={loading ? "loading" : ""}
+              onClick={handleSubmit}
+            ></GenerateButton>
           </FormContainer>
         </Panel>
       </Container>
+      {<MapShow title="Maps" dst={values.destinationCountry} />}
     </>
   );
 };

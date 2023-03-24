@@ -27,7 +27,7 @@ const Navbar = ({ navlinks }) => {
     <>
       <header
         className={`
-        nav-default ${navState && "nav-sticky"}
+        z-50 nav-default ${navState && "nav-sticky"}
       `}
       >
         <nav className="flex items-center justify-between travigo-container">
@@ -36,7 +36,7 @@ const Navbar = ({ navlinks }) => {
              */}
             ItineraryPro
           </NavLink>
-          <ul className="hidden items-center lg:flex sm:hidden md:hidden xs:hidden gap-7">
+          <ul className="flex items-center lg:hidden gap-7">
             {navlinks?.map((val, i) => (
               <li key={i}>
                 <NavLink to={val.path} className="text-lg text-slate-900">
@@ -45,14 +45,14 @@ const Navbar = ({ navlinks }) => {
               </li>
             ))}
           </ul>
-          <ul className="hidden items-center sm:hidden md:hidden xs:hidden lg:flex">
+          <ul className="flex items-center lg:hidden">
             <li>
               <button type="button" className="button-emrald px-7 text-base">
                 <NavLink to={`/ChooseAI`}>AI Itinerary</NavLink>
               </button>
             </li>
           </ul>
-          <ul className="lg:hidden sm:flex xs:flex md:flex items-center">
+          <ul className="hidden lg:flex items-center">
             <li>
               <button
                 type="button"

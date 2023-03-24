@@ -7,6 +7,7 @@ import { Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
+import Heading from "../components/Heading";
 
 const ExistingItinerary = () => {
     const base_url = "https://storage.googleapis.com/pdf-trip-plans/";
@@ -42,13 +43,9 @@ const ExistingItinerary = () => {
         <>
             <Navbar navlinks={navlinks} />
 
-            <div className="relative md:pt-3 bg-gradient-to-r from-emerald-50 to-green-100">
+            <div className="relative py-7 md:pt-3 bg-gradient-to-r from-emerald-50 to-green-100">
                 <div className="travigo-container">
-                    <div className="flex items-center justify-center text-center mb-11 md:mb-7">
-                        <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
-                            Existing Itineraries
-                        </h1>
-                    </div>
+                    <Heading heading="Existing Itineraries" />
                     <div className="flex items-center justify-center text-center mb-11 md:mb-7">
                         <TextField
                             style={{ width: 620 }}
@@ -59,20 +56,26 @@ const ExistingItinerary = () => {
                         />
                     </div>
                     <br />
-                    <div className="grid flex items-center grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-5">
-
+                    <Grid
+                        container
+                        rowSpacing={3}
+                        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="flex-start"
+                    >
                         {filteredList(content, search).map((city) => (
-                            <Grid item xs={3} >
+                            <Grid item xs={3}>
                                 <Link to={base_url + city.Key} target="_blank">
                                     <Card
-                                        sx={{ height: "8vw" }}
+                                        sx={{ height: "8vw", Width: 275 }}
                                         className="bg-gradient-to-b from-emerald-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter hover:scale-105 transition-all duration-400"
                                     >
                                         <CardContent>
                                             <Typography
                                                 variant="h5"
                                                 component="div"
-                                                className="lg:text-lg md:text-md sm:text-sm font-bold"
+                                            // className="text-lg sm:text-sm font-bold"
                                             >
                                                 {parseString(city.Key)}
                                             </Typography>
@@ -81,11 +84,10 @@ const ExistingItinerary = () => {
                                 </Link>
                             </Grid>
                         ))}
-                    </div>
+                    </Grid>
                 </div>
             </div>
         </>
-
     );
 };
 
