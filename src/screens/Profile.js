@@ -15,6 +15,8 @@ import Card from "@mui/material/Card";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
 import { Link } from "@mui/material";
+import Navbar from "../components/Navbar";
+import { navlinks } from "../data/staticdata.js";
 
 // STYLES
 const styles = {
@@ -42,7 +44,7 @@ export default function Profile() {
   };
   return (
     <>
-
+      <Navbar navlinks={navlinks} />
       <CssBaseline>
         {/* BACKGROUND */}
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
