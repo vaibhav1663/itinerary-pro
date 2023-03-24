@@ -1011,7 +1011,12 @@ const AITravelPlanner = () => {
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Maps" dst={values.destinationCountry} />}
+      {
+        <MapShow
+          title={`Browse ${values.destinationCountry} Map`}
+          dst={values.destinationCountry}
+        />
+      }
     </>
   );
 };

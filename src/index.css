@@ -47,14 +47,10 @@
 
   /* poupState */
   .showpopup {
-    opacity: 1;
-    visibility: visible;
-    transform: skewY(0deg) translateY(10px);
+    display: block !important;
   }
   .noshowpopup {
-    opacity: 0;
-    visibility: hidden;
-    transform: skewY(3deg) translateY(-30px);
+    display: none !important;
   }
 
   .nav-default {
