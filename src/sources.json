@@ -1,0 +1,191 @@
+{
+    "cityList": [
+        {
+            "name": "Agartala",
+            "poiId": "CTIXA",
+            "subText": "Tripura, India",
+            "country": "IN"
+        },
+        {
+            "name": "Ahmedabad",
+            "poiId": "CTAMD",
+            "subText": "Gujarat, India",
+            "country": "IN"
+        },
+        {
+            "name": "Aizawl",
+            "poiId": "CTAJL",
+            "subText": "Mizoram, India",
+            "country": "IN"
+        },
+        {
+            "name": "Bengaluru",
+            "poiId": "CTBLR",
+            "subText": "Karnataka, India",
+            "country": "IN"
+        },
+        {
+            "name": "Bhopal",
+            "poiId": "CTBHO",
+            "subText": "Madhya Pradesh, India",
+            "country": "IN"
+        },
+        {
+            "name": "Chandigarh",
+            "poiId": "CTIXC",
+            "subText": "Chandigarh, India",
+            "country": "IN"
+        },
+        {
+            "name": "Chennai",
+            "poiId": "CTMAA",
+            "subText": "Tamil Nadu, India",
+            "country": "IN"
+        },
+        {
+            "name": "Cochin",
+            "poiId": "CTCOK",
+            "subText": "Kerala, India",
+            "country": "IN"
+        },
+        {
+            "name": "Coimbatore",
+            "poiId": "CTCJB",
+            "subText": "Tamil Nadu, India",
+            "country": "IN"
+        },
+        {
+            "name": "Dehradun",
+            "poiId": "CTDED",
+            "subText": "Uttarakhand, India",
+            "country": "IN"
+        },
+        {
+            "name": "Delhi",
+            "poiId": "CTDEL",
+            "subText": "NCT of Delhi, India",
+            "country": "IN"
+        },
+        {
+            "name": "Gangtok",
+            "poiId": "CTXGA",
+            "subText": "Sikkim, India",
+            "country": "IN"
+        },
+        {
+            "name": "Guwahati",
+            "poiId": "CTGAU",
+            "subText": "Assam, India",
+            "country": "IN"
+        },
+        {
+            "name": "Hyderabad",
+            "poiId": "CTHYDERA",
+            "subText": "Telangana, India",
+            "country": "IN"
+        },
+        {
+            "name": "Imphal",
+            "poiId": "CTIMP",
+            "subText": "Manipur, India",
+            "country": "IN"
+        },
+        {
+            "name": "Indore",
+            "poiId": "CTIDR",
+            "subText": "Madhya Pradesh, India",
+            "country": "IN"
+        },
+        {
+            "name": "Jaipur",
+            "poiId": "CTJAI",
+            "subText": "Rajasthan, India",
+            "country": "IN"
+        },
+        {
+            "name": "Kolkata",
+            "poiId": "CTCCU",
+            "subText": "West Bengal, India",
+            "country": "IN"
+        },
+        {
+            "name": "Lucknow",
+            "poiId": "CTLKO",
+            "subText": "Uttar Pradesh, India",
+            "country": "IN"
+        },
+        {
+            "name": "Ludhiana",
+            "poiId": "CTXLD",
+            "subText": "Punjab, India",
+            "country": "IN"
+        },
+        {
+            "name": "Mumbai",
+            "poiId": "CTBOM",
+            "subText": "Maharashtra, India",
+            "country": "IN"
+        },
+        {
+            "name": "Nagpur",
+            "poiId": "CTNAG",
+            "subText": "Maharashtra, India",
+            "country": "IN"
+        },
+        {
+            "name": "Patna",
+            "poiId": "CTPAT",
+            "subText": "Bihar, India",
+            "country": "IN"
+        },
+        {
+            "name": "Pune",
+            "poiId": "CTPNQ",
+            "subText": "Maharashtra, India",
+            "country": "IN"
+        },
+        {
+            "name": "Ranchi",
+            "poiId": "CTIXR",
+            "subText": "Jharkhand, India",
+            "country": "IN"
+        },
+        {
+            "name": "Shillong",
+            "poiId": "CTSHL",
+            "subText": "Meghalaya, India",
+            "country": "IN"
+        },
+        {
+            "name": "Shimla",
+            "poiId": "CTSLV",
+            "subText": "Himachal Pradesh, India",
+            "country": "IN"
+        },
+        {
+            "name": "Srinagar",
+            "poiId": "CTSXR",
+            "subText": "Jammu and Kashmir, India",
+            "country": "IN"
+        },
+        {
+            "name": "Surat",
+            "poiId": "CTSTV",
+            "subText": "Gujarat, India",
+            "country": "IN"
+        },
+        {
+            "name": "Vadodara",
+            "poiId": "CTBDQ",
+            "subText": "Gujarat, India",
+            "country": "IN"
+        },
+        {
+            "name": "Dubai",
+            "poiId": "CTDUB",
+            "subText": "United Arab Emirates",
+            "country": "UNI"
+        }
+    ],
+    "footerText": "More locations coming soon"
+}

@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import AIItinerary from './Itinerary';
+import ThirdItinerary from './ThirdItinerary';
+import ItineraryDetails from './ItineraryDetails';
+import Profile from './Profile';
+import NoPage from './NoPage';
+import About from './About';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home /> }/>
+        <Route path="/about" element={<About />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/ai_itinerary" element={<AIItinerary />} />
+        <Route path="/third_itinerary" element={<ThirdItinerary />} />
+        <Route path="/itinerary_details" element={<ItineraryDetails />} />
+        <Route path="*" element={<NoPage />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
