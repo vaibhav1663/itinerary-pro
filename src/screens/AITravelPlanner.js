@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
 import Map from "./Map";
 import MapShow from "./MapShow";
-import { useEffect } from "react";
+import html2pdf from "html2pdf.js";
 import Axios from "axios";
 import {
   List,
@@ -96,6 +96,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h2`
+  color: "#000";
   font-size: 1rem;
   font-weight: normal;
   font-family: "Roboto", sans-serif;
@@ -222,7 +223,7 @@ const ResponseText = styled.div`
   width: 80%;
   font-size: 1rem;
   font-weight: normal;
-  color: #fff;
+  color: #000;
   border-radius: 0.4rem;
   padding: 1rem;
   margin: 2rem;
@@ -594,30 +595,40 @@ const Main = ({ loading, response, onClick }) => (
 
 const ResponseData = ({ response }) => {
   //   console.log(response);
+  const ref = useRef();
+
   return (
     <ResponseContainer>
       <ResponseTitle>
         <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
       </ResponseTitle>
-      <ResponseText>
+      <ResponseText ref={ref}>
         <ReactMarkdown>{response}</ReactMarkdown>
       </ResponseText>
       <ButtonContainer>
         <ActionButton
           className="button-emrald"
-          onClick={() => {
-            const blob = new Blob([response], {
-              type: "text/plain;charset=utf-8",
-            });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", "travel-plan.txt");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            return false;
+          onClick={async () => {
+            // const blob = new Blob([response], {
+            //   type: "text/plain;charset=utf-8",
+            // });
+            // const url = URL.createObjectURL(blob);
+            // const link = document.createElement("a");
+            // link.setAttribute("href", url);
+            // link.setAttribute("download", "travel-plan.txt");
+            // document.body.appendChild(link);
+            // link.click();
+            // document.body.removeChild(link);
+            // URL.revokeObjectURL(url);
+            const element = ref.current;
+            const opt = {
+              margin: 0.5,
+              filename: "itinerary.pdf",
+              image: { type: "jpeg", quality: 0.98 },
+              html2canvas: { scale: 2 },
+              jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+            };
+            html2pdf().set(opt).from(element).save();
           }}
         >
           Download
@@ -642,6 +653,7 @@ const AITravelPlanner = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(
     options.languages[0]
   );
+  const [dst, setDst] = useState(topLocations[0]?.name);
   const [weather, setWeather] = useState([]);
   const [locid, setLocid] = useState(0);
   useEffect(() => {
@@ -695,7 +707,7 @@ const AITravelPlanner = () => {
       Axios.request(options)
         .then(function (response) {
           console.log(response.data.forecast);
-          setWeather(response.data.forecast);
+          setWeather(response.data.forecast.slice(0, 7));
         })
         .catch(function (error) {
           console.error(error);
@@ -777,6 +789,11 @@ const AITravelPlanner = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name==="destinationCountry"){
+      setDst(
+        value
+      )
+    }
     setValues((prevState) => ({
       ...prevState,
       [name]: value,
@@ -784,6 +801,9 @@ const AITravelPlanner = () => {
   };
 
   const handleLocationClick = (location) => {
+    setDst(
+      location.name
+    )
     setValues((prevState) => ({
       ...prevState,
       destinationCountry: location.name,
@@ -836,6 +856,7 @@ const AITravelPlanner = () => {
         console.log("click", data.choices[0].message.content);
 
         setLoading(false);
+        return data.choices[0].message.content
       })
       .catch((error) => {
         console.error("error", error);
@@ -1083,7 +1104,62 @@ const AITravelPlanner = () => {
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Browse Map" dst={values.destinationCountry} />}
+      {
+        <MapShow
+          title={`Browse ${dst} Map`}
+          dst={dst}
+        />
+      }
+      <div className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white">
+        <div className="travigo-container" style={{ paddingBottom: "50px" }}>
+          <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+            <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
+              Weather
+            </h1>
+          </div>
+          <div className="d-flex items-center justify-center">
+            <div style={{ display: "flex" }}>
+              {weather.length === 0 ? (
+                <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                  Sorry weather not available for this city
+                </p>
+              ) : (
+                weather.map((item) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                      width: "400px",
+                      padding: "7px",
+                      margin: "5px",
+                      border: "1px black solid",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <h4>{item.date}</h4>
+                    <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                      {item.maxTemp + "/" + item.minTemp + "C"}
+                    </p>
+                    <img
+                      src={
+                        "https://developer.foreca.com/static/images/symbols/" +
+                        item.symbol +
+                        ".png"
+                      }
+                      alt="forecast"
+                    ></img>
+                    <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">
+                      {item.symbolPhrase}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

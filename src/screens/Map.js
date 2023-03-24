@@ -17,6 +17,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 
 const Map = (props) => {
+    console.log(props.dst);
   const [city, setCity] = React.useState(props.dst);
   const [type, setType] = React.useState("");
   const [locid, setLocid] = React.useState(0);
@@ -29,123 +30,124 @@ const Map = (props) => {
   const [minTemp, setMinTemp] = React.useState("");
   const [phrase, setPhrase] = React.useState("");
   const [find, setFind] = useState(false);
-  var website =
-    "https://www.google.com/maps/embed/v1/place?q=" +
-    city +
-    `&key=${process.env.REACT_APP_MAPKEY}`;
+  const [website, setWebsite] = useState("https://www.google.com/maps/embed/v1/place?q=" +
+  city +
+  `&key=${process.env.REACT_APP_MAPKEY}`)
   var msg = "";
-  useEffect(() => {
-    if (city !== "") {
-      const options = {
-        method: "GET",
-        url: "https://foreca-weather.p.rapidapi.com/location/search/" + city,
-        params: { lang: "en", country: "in" },
-        headers: {
-          "X-RapidAPI-Key":
-            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
-          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
-        },
-      };
-      Axios.request(options)
-        .then(function (response) {
-          setLocid(response.data.locations[0].id);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    } else {
-      setLocid(0);
-    }
-  }, [city]);
 
   useEffect(() => {
-    if (locid !== 0) {
-      const options = {
-        method: "GET",
-        url: "https://foreca-weather.p.rapidapi.com/forecast/daily/" + locid,
-        params: {
-          alt: "0",
-          tempunit: "C",
-          windunit: "MS",
-          periods: "12",
-          dataset: "full",
-        },
-        headers: {
-          "X-RapidAPI-Key":
-            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
-          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
-        },
-      };
+    setCity(props.dst)
+    setWebsite("https://www.google.com/maps/embed/v1/place?q=" +
+    city +
+    `&key=${process.env.REACT_APP_MAPKEY}`)
+  }, [props.dst])
+//   useEffect(() => {
+//     if (city !== "") {
+//       const options = {
+//         method: "GET",
+//         url: "https://foreca-weather.p.rapidapi.com/location/search/" + city,
+//         params: { lang: "en", country: "in" },
+//         headers: {
+//           "X-RapidAPI-Key":
+//             "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+//           "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+//         },
+//       };
+//       Axios.request(options)
+//         .then(function (response) {
+//           setLocid(response.data.locations[0].id);
+//         })
+//         .catch(function (error) {
+//           console.error(error);
+//         });
+//     } else {
+//       setLocid(0);
+//     }
+//   }, [city]);
 
-      Axios.request(options)
-        .then(function (response) {
-          console.log(response.data.forecast);
-          response.data.forecast.map((item) => {
-            if ("" + date.format("YYYY-MM-DD") === item.date) {
-              setMaxTemp(item.maxTemp);
-              setMinTemp(item.minTemp);
-              setPhrase(item.symbolPhrase);
-              setSymbol(item.symbol);
-            }
-          });
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    } else {
-    }
-  }, [locid, date]);
+//   useEffect(() => {
+//     if (locid !== 0) {
+//       const options = {
+//         method: "GET",
+//         url: "https://foreca-weather.p.rapidapi.com/forecast/daily/" + locid,
+//         params: {
+//           alt: "0",
+//           tempunit: "C",
+//           windunit: "MS",
+//           periods: "12",
+//           dataset: "full",
+//         },
+//         headers: {
+//           "X-RapidAPI-Key":
+//             "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+//           "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+//         },
+//       };
+
+//       Axios.request(options)
+//         .then(function (response) {
+//           console.log(response.data.forecast);
+//           response.data.forecast.map((item) => {
+//             if ("" + date.format("YYYY-MM-DD") === item.date) {
+//               setMaxTemp(item.maxTemp);
+//               setMinTemp(item.minTemp);
+//               setPhrase(item.symbolPhrase);
+//               setSymbol(item.symbol);
+//             }
+//           });
+//         })
+//         .catch(function (error) {
+//           console.error(error);
+//         });
+//     } else {
+//     }
+//   }, [locid, date]);
   const handleChange = (event, newType) => {
     setType(newType);
   };
-  if (city === "") {
-    website = `https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Type City name to view more";
-  } else if (type === "") {
-    website =
-      "https://www.google.com/maps/embed/v1/place?zoom=14&q=" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Showing Map of " + city;
-  } else if (type === "bus") {
-    website =
-      "https://www.google.com/maps/embed/v1/search?zoom=14&q=Bus+in+" +
-      city.split(", ")[0] +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Bus Stops in " + city + " will be highlighted";
-  } else if (type === "rail") {
-    website =
-      "https://www.google.com/maps/embed/v1/search?zoom=13&q=Railways+in+" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Train and Metro Stops in " + city + " will be highlighted";
-  } else if (type === "air") {
-    website =
-      "https://www.google.com/maps/embed/v1/search?zoom=12&q=Airports+in+" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Airports in " + city + " will be highlighted";
-  } else if (type === "hotels") {
-    website =
-      "https://www.google.com/maps/embed/v1/search?zzoom=14&q=hotels+in+" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Hotels in " + city + " will be highlighted";
-  } else if (type === "resto") {
-    website =
-      "https://www.google.com/maps/embed/v1/search?zoom=16&q=Restaurants+in+" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Restaurants in " + city + " will be highlighted";
-  }
-  if (type === "trial") {
-    // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
-    website =
-      "https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" +
-      city +
-      `&key=${process.env.REACT_APP_MAPKEY}`;
-    msg = "Trial";
-  }
+  useEffect(() => {
+    if (city === "") {
+        setWebsite(`https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.REACT_APP_MAPKEY}`);
+        msg = "Type City name to view more";
+      } else if (type === "") {
+        setWebsite("https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.REACT_APP_MAPKEY}`);
+        msg = "Showing Map of " + city;
+      } else if (type === "bus") {
+        setWebsite("https://www.google.com/maps/embed/v1/search?q=Bus+in+" +
+        city.split(", ")[0] +
+        `&key=${process.env.REACT_APP_MAPKEY}`)
+        msg = "Bus Stops in " + city + " will be highlighted";
+      } else if (type === "rail") {
+        setWebsite("https://www.google.com/maps/embed/v1/search?q=Railways+in+" +
+        city +
+        `&key=${process.env.REACT_APP_MAPKEY}`)
+        msg = "Train and Metro Stops in " + city + " will be highlighted";
+      } else if (type === "air") {
+        setWebsite("https://www.google.com/maps/embed/v1/search?q=Airports+in+" +
+        city +
+        `&key=${process.env.REACT_APP_MAPKEY}`)
+        msg = "Airports in " + city + " will be highlighted";
+      } else if (type === "hotels") {
+        setWebsite("https://www.google.com/maps/embed/v1/search?q=hotels+in+" +
+        city +
+        `&key=${process.env.REACT_APP_MAPKEY}`)
+        msg = "Hotels in " + city + " will be highlighted";
+      } else if (type === "resto") {
+        setWebsite("https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" +
+        city +
+        `&key=${process.env.REACT_APP_MAPKEY}`)
+        msg = "Restaurants in " + city + " will be highlighted";
+      }
+      console.log("here");
+  }, [city, type])
+  
+//   if (type === "trial") {
+//     // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
+//     setWebsite("https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" +
+//     city +
+//     `&key=${process.env.REACT_APP_MAPKEY}`)
+//     msg = "Trial";
+//   }
 
   return (
     <>
