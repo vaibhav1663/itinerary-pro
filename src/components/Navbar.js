@@ -23,8 +23,6 @@ const Navbar = ({ navlinks }) => {
     };
   }, []);
 
-  // console.log(popupState)
-
   return (
     <>
       <header
@@ -38,23 +36,23 @@ const Navbar = ({ navlinks }) => {
              */}
             ItineraryPro
           </NavLink>
-          <ul className="flex items-center lg:hidden gap-7">
+          <ul className="hidden items-center lg:flex sm:hidden md:hidden xs:hidden gap-7">
             {navlinks?.map((val, i) => (
               <li key={i}>
-                <NavLink to={"#"} className="text-lg text-slate-900">
+                <NavLink to={val.path} className="text-lg text-slate-900">
                   {val.link}
                 </NavLink>
               </li>
             ))}
           </ul>
-          <ul className="flex items-center lg:hidden">
+          <ul className="hidden items-center sm:hidden md:hidden xs:hidden lg:flex">
             <li>
               <button type="button" className="button-emrald px-7 text-base">
-                Join Us
+                <NavLink to={`/DetailedTrip`}>AI Itinerary Generate</NavLink>
               </button>
             </li>
           </ul>
-          <ul className="hidden lg:flex items-center">
+          <ul className="lg:hidden sm:flex xs:flex md:flex items-center">
             <li>
               <button
                 type="button"
