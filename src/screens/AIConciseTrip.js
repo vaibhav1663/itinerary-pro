@@ -86,6 +86,12 @@ const Title = styled.h1`
   }
 `;
 
+const titleStyle = {
+  "@media (max-width: 768px)": {
+    "font-size": "2.4rem"
+  }
+}
+
 const Subtitle = styled.h2`
   font-size: 1rem;
   font-weight: normal;
@@ -352,17 +358,31 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generator ⭐️</Title>
-    {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
-    <GenerateButton
-      loading={loading}
-      type="submit"
-      disabled={loading}
-      className={loading ? "loading" : ""}
-      onClick={onClick}
-    ></GenerateButton>
+    <div className="relative my-7 md:mt-3 md:ml-10">
+      <div className="travigo-container">
+        <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+          <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900" style={titleStyle}>
+            AI Trip Generator
+          </h1>
+        </div>
+        <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+          {!response && <Subtitle><span style={{ color: "black" }}>Fill the form to generate your itinerary</span></Subtitle>}
+        </div>
+        <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+        <GenerateButton
+            loading={loading}
+            type="submit"
+            disabled={loading}
+            className={loading ? "loading" : ""}
+            onClick={onClick}
+          ></GenerateButton>
+        </div>
+      </div>
+    </div>
+    <Title></Title>
     <ResponseContainer>
       {loading ? <Loading /> : <></>}
+      <span aria-label="emoji" style={{ "color": "black", fontSize: "24px", marginTop: "5vh" }}>Your travel plan is ready 🎉</span>
     </ResponseContainer>
   </MainContent>
 );
@@ -371,7 +391,7 @@ const ResponseData = ({ response }) => {
   //   console.log(response);
   return (
     <>
-      
+
       {/* <object data={response} type="application/pdf" width="100%" height="100%">
         <p>
           Alternative text - include a link <a href={response}>to the PDF!</a>
@@ -394,10 +414,10 @@ const AIConciseTrip = () => {
 
   const { user } = useUserAuth();
   var ref = "trash";
-  if(user && user.uid){
+  if (user && user.uid) {
     ref = collection(db, user && user.uid)
   }
-  
+
   const addDocument = async (data) => {
     await addDoc(ref, data);
     console.log("Uploaded")
@@ -466,7 +486,7 @@ const AIConciseTrip = () => {
     if (data.status === "OK") {
       console.log("click", data.file_url);
       setResponse(data.file_url);
-      addDocument({ url: data.file_url, city: values.destinationCountry, duration: values.tripDuration, timestamp : Date.now()})
+      addDocument({ url: data.file_url, city: values.destinationCountry, duration: values.tripDuration, timestamp: Date.now() })
     }
 
 
@@ -550,7 +570,7 @@ const AIConciseTrip = () => {
           </FormContainer>
         </Panel>
       </Container>
-      {<MapShow title="Maps" dst={values.destinationCountry}/>}
+      {<MapShow title="Maps" dst={values.destinationCountry} />}
     </>
   );
 };

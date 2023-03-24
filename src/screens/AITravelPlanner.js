@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
 import Map from "./Map";
@@ -631,6 +631,7 @@ const AITravelPlanner = () => {
   const [selectedLanguage, setSelectedLanguage] = useState(
     options.languages[0]
   );
+  const [dst, setDst] = useState(topLocations[0]?.name);
 
   const handleCuisineTypeClick = (cuisineType) => {
     if (selectedCuisineTypes.includes(cuisineType)) {
@@ -705,6 +706,11 @@ const AITravelPlanner = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if (name==="destinationCountry"){
+      setDst(
+        value
+      )
+    }
     setValues((prevState) => ({
       ...prevState,
       [name]: value,
@@ -712,6 +718,9 @@ const AITravelPlanner = () => {
   };
 
   const handleLocationClick = (location) => {
+    setDst(
+      location.name
+    )
     setValues((prevState) => ({
       ...prevState,
       destinationCountry: location.name,
@@ -764,6 +773,7 @@ const AITravelPlanner = () => {
         console.log("click", data.choices[0].message.content);
 
         setLoading(false);
+        return data.choices[0].message.content
       })
       .catch((error) => {
         console.error("error", error);
@@ -1013,8 +1023,8 @@ const AITravelPlanner = () => {
       </Container>
       {
         <MapShow
-          title={`Browse ${values.destinationCountry} Map`}
-          dst={values.destinationCountry}
+          title={`Browse ${dst} Map`}
+          dst={dst}
         />
       }
     </>
