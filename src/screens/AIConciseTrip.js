@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import MapShow from "./MapShow";
 import { db } from "../firebase";
-import { collection, getDoc, addDoc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";
 import Weather from "./Weather";
+import Navbar from "../components/Navbar";
+import { navlinks } from "../data/staticdata.js";
 
 const Container = styled.div`
   display: flex;
@@ -569,6 +571,7 @@ const AIConciseTrip = () => {
 
   return (
     <>
+      <Navbar navlinks={navlinks} />
       <Container>
         <Main loading={loading} response={response} onClick={handleSubmit} />
         <Panel>

@@ -4,14 +4,9 @@ import { useUserAuth } from "../context/UserAuthContext";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-
 import Card from "@mui/material/Card";
-import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -26,7 +21,8 @@ import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import { db } from "../firebase";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
-import { NavLink } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { navlinks } from "../data/staticdata.js";
 import { Link } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -91,6 +87,7 @@ export default function Profile() {
 
   return (
     <>
+      <Navbar navlinks={navlinks} />
       <CssBaseline>
         {/* BACKGROUND */}
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
@@ -116,13 +113,13 @@ export default function Profile() {
             sx={{
               position: "relative",
               top: "-20vh",
-              left: "20vw",
-              margin: "auto",
-              px: { xs: 0, md: 7 },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             {/* PROFILE CARD */}
-            <Grid item md={6}>
+            <Grid className="sm:w-full" item md={6}>
               <Card variant="outlined">
                 <Grid
                   container
@@ -202,14 +199,14 @@ export default function Profile() {
                   {/* BUTTON */}
                   <Grid
                     item
-                    class="flex items-center justify-center"
+                    className="flex items-center justify-center"
                     style={styles.details}
                     sx={{ width: "100%" }}
                   >
                     <Button
                       variant="contained"
                       color="primary"
-                      class="button-emrald flex items-center justify-center"
+                      className="button-emrald flex items-center justify-center"
                       onClick={handleLogout}
                       sx={{ width: "99%", p: 1, my: 2 }}
                     >
