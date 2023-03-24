@@ -2,7 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./screens/Home";
-import AIItinerary from "./screens/Itinerary";
+import AIItinerary from "./screens/AITravelPlanner";
 import ThirdItinerary from "./screens/ThirdItinerary";
 import ItineraryDetails from "./screens/ItineraryDetails";
 import Profile from "./screens/Profile";
