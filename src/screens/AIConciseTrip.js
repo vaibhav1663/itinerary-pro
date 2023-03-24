@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";
 
-
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -89,9 +88,9 @@ const Title = styled.h1`
 
 const titleStyle = {
   "@media (max-width: 768px)": {
-    "font-size": "2.4rem"
-  }
-}
+    "font-size": "2.4rem",
+  },
+};
 
 const Subtitle = styled.h2`
   font-size: 1rem;
@@ -345,8 +344,8 @@ const Panel = styled.div`
 `;
 
 const topLocations = [
-  { name: "Paris, France", value: "Paris/France" },
   { name: "Pune, India", value: "Pune/India" },
+  { name: "Paris, France", value: "Paris/France" },
   { name: "Mumbai, India", value: "Mumbai/India" },
   { name: "Dubai, UAE", value: "Dubai/UAE" },
   { name: "Milano, Italy", value: "Milano/Italy" },
@@ -441,8 +440,7 @@ const AIConciseTrip = () => {
         method: "GET",
         url:
           "https://foreca-weather.p.rapidapi.com/location/search/" +
-          values.destinationCountry
-            .split(",")[0],
+          values.destinationCountry.split(",")[0],
         params: { lang: "en", country: "in" },
         headers: {
           "X-RapidAPI-Key":
@@ -653,9 +651,7 @@ const AIConciseTrip = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
-      <div
-        className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
-      >
+      <div className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white">
         <div className="travigo-container" style={{ paddingBottom: "50px" }}>
           <div className="flex items-center justify-center text-center mb-11 md:mb-7">
             <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
@@ -663,25 +659,57 @@ const AIConciseTrip = () => {
             </h1>
           </div>
           <div className="d-flex items-center justify-center">
-            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
-              {
-                weather.length === 0 ? <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">Sorry weather not available for this city</p> :
-                  weather.map((item) => (
-
-                    <div className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", width: "300px", padding: "7px", margin: "5px", borderRadius: "8px", paddingTop: "15px", paddingBottom: "15px" , marginTop: "10px"}}>
-                      <h4>{item.date}</h4>
-                      <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">{item.maxTemp + "/" + item.minTemp + "C"}</p>
-                      <img src={"https://developer.foreca.com/static/images/symbols/" + item.symbol + ".png"} style={{ width: "100px", height: "100px" }}></img>
-                      <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">{item.symbolPhrase}</p>
-                    </div>
-                  ))
-              }
-
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {weather.length === 0 ? (
+                <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                  Sorry weather not available for this city
+                </p>
+              ) : (
+                weather.map((item) => (
+                  <div
+                    className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexDirection: "column",
+                      width: "300px",
+                      padding: "7px",
+                      margin: "5px",
+                      borderRadius: "8px",
+                      paddingTop: "15px",
+                      paddingBottom: "15px",
+                      marginTop: "10px",
+                    }}
+                  >
+                    <h4>{item.date}</h4>
+                    <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                      {item.maxTemp + "/" + item.minTemp + "C"}
+                    </p>
+                    <img
+                      src={
+                        "https://developer.foreca.com/static/images/symbols/" +
+                        item.symbol +
+                        ".png"
+                      }
+                      style={{ width: "100px", height: "100px" }}
+                    ></img>
+                    <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">
+                      {item.symbolPhrase}
+                    </p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
-
-
       </div>
     </>
   );

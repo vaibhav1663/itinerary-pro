@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Hero = ({ hero: { title, subtitle, btn1, btn2, text, img } }) => {
   return (
@@ -13,14 +14,14 @@ const Hero = ({ hero: { title, subtitle, btn1, btn2, text, img } }) => {
               {subtitle}
             </h1>
             <p className="text-base my-5 text-center sm:text-sm">{text}</p>
-            {/* <div className="flex items-center justify-center gap-11 sm:gap-3 sm:flex-col sm:w-full">
-              <button type="button" className="button-emrald">
-                {btn1}
+            <div className="flex items-center justify-center gap-11 sm:gap-3 sm:flex-col sm:w-full">
+              <button type="button" className="button-emrald px-7 text-base">
+                <NavLink to={`/ChooseAI`}>Try AI Itinerary </NavLink>
               </button>
-              <button type="button" className="button-light">
+              {/* <button type="button" className="button-light">
                 {btn2}
-              </button>
-            </div> */}
+              </button> */}
+            </div>
           </div>
           <div className="flex items-center justify-center mb-11">
             <img
