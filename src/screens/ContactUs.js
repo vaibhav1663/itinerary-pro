@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Heading from "../components/Heading";
 import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
 
@@ -15,18 +16,18 @@ const ContactUsPage = () => {
   return (
     <>
       <Navbar navlinks={navlinks} />
-      <div className="bg-gray-100 min-h-screen">
+      <div className="bg-gradient-to-r from-emerald-50 to-green-100 min-h-screen">
         <div className="container mx-auto py-16 px-4">
-          <h1 className="text-4xl font-bold mb-8">Contact Us</h1>
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 mb-8 md:mb-0">
+          <Heading heading="Contact Us" />
+          <div className="flex justify-center ml-10 flex-col ">
+            <div className="w-full  mb-8 md:mb-0">
               <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
               <p className="text-gray-700 leading-loose">
-                Have a question or feedback? Fill out the form below to send us a
-                message and we'll get back to you as soon as possible.
+                Have a question or feedback? Fill out the form below to send us
+                a message and we'll get back to you as soon as possible.
               </p>
             </div>
-            <div className="md:w-1/2">
+            <div className="w-1/2 md:w-full">
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
                   <label
@@ -91,7 +92,6 @@ const ContactUsPage = () => {
         </div>
       </div>
     </>
-
   );
 };
 

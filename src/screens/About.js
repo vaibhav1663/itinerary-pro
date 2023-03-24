@@ -11,8 +11,8 @@ const About = () => {
         <div className="container mx-auto py-16 px-4">
           <Heading heading="About Us" />
 
-          <div className="flex flex-col md:flex-row">
-            <div className="mx-5 text-center rounded-xl shadow-lg md:w-1/2 mb-8 md:mb-0">
+          <div className="flex flex-row md:flex-col">
+            <div className="mx-5 text-center rounded-xl shadow-lg w-1/2 md:w-full mb-8 md:mb-0">
               <h2 className="text-2xl font-bold mb-4 p-5">Who We Are</h2>
               <p className="text-gray-700 leading-loose p-5">
                 ItineraryPro is a travel itinerary recommendation website that
@@ -24,7 +24,7 @@ const About = () => {
                 can easily access your trip details on the go.
               </p>
             </div>
-            <div className="mx-5 text-center rounded-xl shadow-lg md:w-1/2 mb-8 md:mb-0">
+            <div className="mx-5 text-center rounded-xl shadow-lg w-1/2 md:w-full mb-8 md:mb-0">
               <h2 className="text-2xl font-bold mb-4 p-5">What We Do</h2>
               <p className="text-gray-700 leading-loose p-5">
                 At ItineraryPro, we believe that planning a trip should be as
