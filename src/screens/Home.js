@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Explore from "../components/Explore";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import {
   hero,
   navlinks,
   memory,
-  placesAPI,
   brands,
   pricingapi,
   bannerAPI,
@@ -17,6 +17,7 @@ export default function Home() {
     <>
       <Navbar navlinks={navlinks} />
       <Hero hero={hero} />
+      <Explore title="Explore The Beauty of World" />
     </>
   );
 }
