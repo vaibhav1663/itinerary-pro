@@ -12,8 +12,7 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: start;
   align-items: stretch;
-  min-height: 100vh;
-  height: 100%;
+  max-height: 40vh;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -47,7 +46,6 @@ const MainContent = styled.div`
   background-size: 400% 400%;
   color: #fff;
   width: 100%;
-  height: 100%;
 
   animation: gradient 15s ease infinite;
   @keyframes gradient {
@@ -311,7 +309,6 @@ const Panel = styled.div`
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  border: 1px solid #ccc;
   background-color: #fff;
   width: 28%;
   top: 0;
@@ -355,7 +352,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generater ⭐️</Title>
+    <Title>⭐️ AI Trip Generator ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
     <GenerateButton
       loading={loading}
@@ -367,10 +364,6 @@ const Main = ({ loading, response, onClick }) => (
     <ResponseContainer>
       {loading ? <Loading /> : <></>}
     </ResponseContainer>
-    {!loading && response && <>
-      <object width="100%" height="700" data={response} type="application/pdf">   </object>
-        <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
-    </>}
   </MainContent>
 );
 
