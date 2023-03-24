@@ -1,0 +1,16 @@
+.map{
+    height: 60vh;
+    min-height: 20vh;
+    display: flex;
+    flex-direction: row;
+}
+#google-maps-display{
+    height:100%; width:100%;max-width:100%;
+}
+iframe{
+    height:100%; width:100%;max-width:100%;
+}
+.content{
+    width: 40vw;
+    padding: 2vw;
+}
