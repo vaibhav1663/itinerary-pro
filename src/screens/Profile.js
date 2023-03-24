@@ -116,13 +116,13 @@ export default function Profile() {
             sx={{
               position: "relative",
               top: "-20vh",
-              left: "20vw",
-              margin: "auto",
-              px: { xs: 0, md: 7 },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             {/* PROFILE CARD */}
-            <Grid item md={6}>
+            <Grid className="sm:w-full" item md={6}>
               <Card variant="outlined">
                 <Grid
                   container
@@ -202,14 +202,14 @@ export default function Profile() {
                   {/* BUTTON */}
                   <Grid
                     item
-                    class="flex items-center justify-center"
+                    className="flex items-center justify-center"
                     style={styles.details}
                     sx={{ width: "100%" }}
                   >
                     <Button
                       variant="contained"
                       color="primary"
-                      class="button-emrald flex items-center justify-center"
+                      className="button-emrald flex items-center justify-center"
                       onClick={handleLogout}
                       sx={{ width: "99%", p: 1, my: 2 }}
                     >
