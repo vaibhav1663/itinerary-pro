@@ -2,11 +2,11 @@ import dashboard from "../images/dashboard.jpg";
 import memoryimg from "../images/memory.png";
 
 export const navlinks = [
-  { link: "Home", id: "home" },
-  { link: "About", id: "about" },
-  { link: "Explore", id: "explore" },
-  { link: "Pricing", id: "pricing" },
-  { link: "Contact", id: "contact" },
+  { link: "Home", id: "home", path: "/" },
+  { link: "About", id: "about", path: "/AboutUs" },
+  { link: "Explore", id: "explore", path: "/third_itinerary" },
+  { link: "Contact", id: "contact", path: "/contact" },
+  { link: "Profile", id: "profile", path: "/profile" },
 ];
 
 export const hero = {
