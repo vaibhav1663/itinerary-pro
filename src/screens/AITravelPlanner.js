@@ -15,6 +15,8 @@ import {
   Divider,
 } from "@mui/material";
 import Weather from "./Weather";
+import Navbar from "../components/Navbar";
+import { navlinks } from "../data/staticdata.js";
 
 const Container = styled.div`
   display: flex;
@@ -729,7 +731,7 @@ const AITravelPlanner = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name==="destinationCountry"){
+    if (name === "destinationCountry") {
       setDst(
         value
       )
@@ -806,6 +808,8 @@ const AITravelPlanner = () => {
 
   return (
     <>
+      <Navbar navlinks={navlinks} />
+      <div className="py-16"></div>
       <Container>
         <Main loading={loading} response={response} onClick={handleSubmit} />
         <Panel>
@@ -1050,7 +1054,7 @@ const AITravelPlanner = () => {
           dst={dst}
         />
       }
-      {<Weather dst={dst}/>}
+      {<Weather dst={dst} />}
       {/* <div className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white">
         <div className="travigo-container" style={{ paddingBottom: "50px" }}>
           <div className="flex items-center justify-center text-center mb-11 md:mb-7">

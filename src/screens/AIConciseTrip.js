@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";
 import Weather from "./Weather";
+import Navbar from "../components/Navbar";
+import { navlinks } from "../data/staticdata.js";
 
 const Container = styled.div`
   display: flex;
@@ -569,6 +571,7 @@ const AIConciseTrip = () => {
 
   return (
     <>
+      <Navbar navlinks={navlinks} />
       <Container>
         <Main loading={loading} response={response} onClick={handleSubmit} />
         <Panel>
