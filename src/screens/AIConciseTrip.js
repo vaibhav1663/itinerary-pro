@@ -3,8 +3,10 @@ import styled from "styled-components";
 import MapShow from "./MapShow";
 import { db } from "../firebase";
 import { collection, getDoc, addDoc } from "firebase/firestore";
-
+import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
+import Axios from "axios";
+
 
 const Container = styled.div`
   display: flex;
@@ -425,7 +427,67 @@ const AIConciseTrip = () => {
     await addDoc(ref, data);
     console.log("Uploaded");
   };
+  const [weather, setWeather] = useState([]);
+  const [locid, setLocid] = useState(0);
+  useEffect(() => {
+    if (values.destinationCountry !== "") {
+      const options = {
+        method: "GET",
+        url:
+          "https://foreca-weather.p.rapidapi.com/location/search/" +
+          values.destinationCountry
+            .split(",")[0],
+        params: { lang: "en", country: "in" },
+        headers: {
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
+      };
+      console.log(values.destinationCountry);
+      Axios.request(options)
+        .then(function (response) {
+          console.log(response);
+          setLocid(response.data.locations[0].id);
+          console.log(locid);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    } else {
+      setLocid(0);
+    }
+  }, []);
+  useEffect(() => {
+    if (locid !== 0) {
+      const options = {
+        method: "GET",
+        url: "https://foreca-weather.p.rapidapi.com/forecast/daily/" + locid,
+        params: {
+          alt: "0",
+          tempunit: "C",
+          windunit: "MS",
+          periods: "12",
+          dataset: "full",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
+      };
 
+      Axios.request(options)
+        .then(function (response) {
+          console.log(response.data.forecast);
+          setWeather(response.data.forecast.slice(0, 7));
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    } else {
+    }
+  }, [locid]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevState) => ({
@@ -585,6 +647,37 @@ const AIConciseTrip = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
+      <div
+        className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
+      >
+        <div className="travigo-container" style={{ paddingBottom: "50px" }}>
+          <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+            <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
+              Weather
+            </h1>
+          </div>
+          <div className="d-flex items-center justify-center">
+            <div style={{ display: "flex" }}>
+
+            {
+              weather.length === 0 ? <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">Sorry weather not available for this city</p> :
+                weather.map((item) => (
+
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", width: "400px", padding: "7px", margin: "5px", border: "1px black solid", borderRadius: "8px" }}>
+                    <h4>{item.date}</h4>
+                    <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">{item.maxTemp + "/" + item.minTemp + "C"}</p>
+                    <img src={"https://developer.foreca.com/static/images/symbols/" + item.symbol + ".png"}></img>
+                    <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">{item.symbolPhrase}</p>
+                  </div>
+                ))
+              }
+        
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </>
   );
 };
