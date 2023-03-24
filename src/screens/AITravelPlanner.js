@@ -1,14 +1,16 @@
+import { Box } from "@mui/material";
 import React, { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
+import Map from "./Map";
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: start;
   align-items: stretch;
-  min-height: 100vh;
-  height: 100%;
+  max-height: 100vh;
+  overflow: scroll;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -30,7 +32,6 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  min-height: 100vh;
   background-image: linear-gradient(
     to bottom right,
     #1a1a1a,
@@ -42,7 +43,7 @@ const MainContent = styled.div`
   background-size: 400% 400%;
   color: #fff;
   width: 100%;
-  height: 100%;
+  overflow: scroll;
 
   animation: gradient 15s ease infinite;
   @keyframes gradient {
@@ -403,7 +404,6 @@ const Panel = styled.div`
   padding: 1rem;
   border: 1px solid #ccc;
   background-color: #fff;
-  position: fixed;
   width: 28%;
   top: 0;
   right: 0;
@@ -576,7 +576,7 @@ const Main = ({ loading, response, onClick }) => (
       onClick={onClick}
     ></GenerateButton>
     <ResponseContainer>
-      {loading ? <Loading /> : response && <ResponseData response={response} />}
+      {loading ? <Loading /> : response && <ResponseData response={response}/>}
     </ResponseContainer>
   </MainContent>
 );
@@ -740,6 +740,11 @@ const AITravelPlanner = () => {
     }));
   };
 
+  function scrollDown(){
+    // console.log(document.body.scrollHeight);
+    window.scrollTo(0, 980);
+  }
+
   const handleSubmit = (e) => {
     // e.preventDefault();
     setLoading(true);
@@ -764,6 +769,7 @@ const AITravelPlanner = () => {
         setLoading(false);
       });
   };
+  {alert(process.env.MAPKEY, process.env.REACT_APP_OPENAI_ENDPOINT_URL)}
 
   return (
     <>
@@ -991,9 +997,21 @@ const AITravelPlanner = () => {
                 ))}
               </LanguageRow>
             </LanguageSelectorContainer>
+            {<Box
+                component="img"
+                sx={{
+                  width: "50px",
+                }}
+                alt="The house from the offer."
+                src="maps"
+                onClick={scrollDown}
+              />}
           </FormContainer>
         </Panel>
       </Container>
+      <Box justifyContent={"center"}>
+        {loading ? <></> : response && <Map dst={values.destinationCountry}/>}
+      </Box>
     </>
   );
 };
