@@ -350,7 +350,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generator ⭐️</Title>
+    <Title>⭐️ AI Trip Generater ⭐️</Title>
     {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
     <GenerateButton
       loading={loading}

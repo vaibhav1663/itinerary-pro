@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import place1 from "../images/img1.webp";
 import place3 from "../images/img3.webp";
 import place4 from "../images/img4.webp";
@@ -10,20 +10,70 @@ import place8 from "../images/img8.webp";
 import place9 from "../images/img9.webp";
 import place10 from "../images/img10.webp";
 
-const base_url = "https://storage.googleapis.com/pdf-trip-plans/"
+const base_url = "https://storage.googleapis.com/pdf-trip-plans/";
 
 const Explore = ({ title }) => {
   const placesAPI = [
-    { placeImg: place1, location: "Nepal", link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`, distance: " hour dirve" },
-    { placeImg: place10, location: "Mount Abu", link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`, distance: " hour dirve" },
-    { placeImg: place3, location: "Bali", link: `${base_url}plans/trip-to-Bali Indonesia -1677857491.290219.pdf`, distance: " hour drive" },
-    { placeImg: place4, location: "Goa", link: `${base_url}plans/trip-to- goa-1677683052.7227485.pdf`, distance: "our drive" },
-    { placeImg: place5, location: "Munnar", link: `${base_url}plans/trip-to-3day trip to munnar-1677766821.896906.pdf`, distance: " hour drive" },
-    { placeImg: place6, location: "Meghalaya", link: `${base_url}plans/trip-to- Meghalaya india -1677567018.3818476.pdf`, distance: " hour drive" },
-    { placeImg: place7, location: "Kerala", link: `${base_url}plans/trip-to- kerala, hampi-1677569147.1092768.pdf`, distance: " hour drive" },
-    { placeImg: place8, location: "Bangalore", link: `${base_url}plans/trip-to-1 day near Bangalore -1677861983.9344642.pdf`, distance: " hour drive" },
-    { placeImg: place9, location: "Chennai", link: `${base_url}plans/trip-to-1 day trip in chennai-1677963366.6425345.pdf`, distance: " hour drive" },
-    { placeImg: place10, location: "Mysore", link: `${base_url}plans/trip-to-2 days mysore trip-1678804061.8047736.pdf`, distance: " hour drive" },
+    {
+      placeImg: place1,
+      location: "Nepal",
+      link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`,
+      distance: " hour dirve",
+    },
+    {
+      placeImg: place10,
+      location: "Mount Abu",
+      link: `${base_url}plans/trip-to- Kathmandu, Nepal-1677868635.3493497.pdf`,
+      distance: " hour dirve",
+    },
+    {
+      placeImg: place3,
+      location: "Bali",
+      link: `${base_url}plans/trip-to-Bali Indonesia -1677857491.290219.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place4,
+      location: "Goa",
+      link: `${base_url}plans/trip-to- goa-1677683052.7227485.pdf`,
+      distance: "our drive",
+    },
+    {
+      placeImg: place5,
+      location: "Munnar",
+      link: `${base_url}plans/trip-to-3day trip to munnar-1677766821.896906.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place6,
+      location: "Meghalaya",
+      link: `${base_url}plans/trip-to- Meghalaya india -1677567018.3818476.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place7,
+      location: "Kerala",
+      link: `${base_url}plans/trip-to- kerala, hampi-1677569147.1092768.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place8,
+      location: "Bangalore",
+      link: `${base_url}plans/trip-to-1 day near Bangalore -1677861983.9344642.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place9,
+      location: "Chennai",
+      link: `${base_url}plans/trip-to-1 day trip in chennai-1677963366.6425345.pdf`,
+      distance: " hour drive",
+    },
+    {
+      placeImg: place10,
+      location: "Mysore",
+      link: `${base_url}plans/trip-to-2 days mysore trip-1678804061.8047736.pdf`,
+      distance: " hour drive",
+    },
   ];
   return (
     <>
@@ -36,7 +86,7 @@ const Explore = ({ title }) => {
           </div>
           <div className="grid items-center grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
             {placesAPI?.map((val, i) => (
-              <Link to={val.link}>
+              <Link to={val.link} target="_blank">
                 <div
                   key={i}
                   className="flex items-center gap-5 sm:gap-3 rounded-lg hover:bg-emerald-300 transition-all duration-300 cursor-pointer hover:scale-105"
@@ -55,7 +105,6 @@ const Explore = ({ title }) => {
                   </div>
                 </div>
               </Link>
-
             ))}
           </div>
         </div>
