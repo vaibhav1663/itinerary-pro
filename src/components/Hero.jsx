@@ -26,6 +26,7 @@ const Hero = ({ hero: { title, subtitle, btn1, btn2, text, img } }) => {
             <img
               src={img}
               alt="dashbaord/img"
+              style={{ objectFit: "contain" }}
               className="h-[85vh] w-full object-fill lg:h-[75vh] md:h-[57vh] sm:h-[35vh] sm:object-contain drop-shadow-emrald"
             />
           </div>

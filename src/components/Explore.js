@@ -74,7 +74,7 @@ const Explore = ({ title }) => {
               {title}
             </h1>
           </div>
-          <div className="grid flex items-center grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
+          <div className="grid items-center grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
             {placesAPI?.map((val, i) => (
               <Link to={val.link} target="_blank">
                 <div
@@ -88,9 +88,7 @@ const Explore = ({ title }) => {
                       className="w-20 h-20 sm:w-16 sm:h-16 rounded-lg filter drop-shadow-lg"
                     />
                   </div>
-                  <div
-                    className="flex items-start flex-col text-slate-900"
-                  >
+                  <div className="flex items-start flex-col text-slate-900">
                     <h1 className="text-lg sm:text-sm font-bold">
                       {val.location}
                     </h1>
