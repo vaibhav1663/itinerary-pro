@@ -6,7 +6,7 @@ import { collection, getDoc, addDoc } from "firebase/firestore";
 import { useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import Axios from "axios";
-
+import Weather from "./Weather";
 
 const Container = styled.div`
   display: flex;
@@ -89,9 +89,9 @@ const Title = styled.h1`
 
 const titleStyle = {
   "@media (max-width: 768px)": {
-    "font-size": "2.4rem"
-  }
-}
+    "font-size": "2.4rem",
+  },
+};
 
 const Subtitle = styled.h2`
   font-size: 1rem;
@@ -345,8 +345,8 @@ const Panel = styled.div`
 `;
 
 const topLocations = [
-  { name: "Paris, France", value: "Paris/France" },
   { name: "Pune, India", value: "Pune/India" },
+  { name: "Paris, France", value: "Paris/France" },
   { name: "Mumbai, India", value: "Mumbai/India" },
   { name: "Dubai, UAE", value: "Dubai/UAE" },
   { name: "Milano, Italy", value: "Milano/Italy" },
@@ -441,8 +441,7 @@ const AIConciseTrip = () => {
         method: "GET",
         url:
           "https://foreca-weather.p.rapidapi.com/location/search/" +
-          values.destinationCountry
-            .split(",")[0],
+          values.destinationCountry.split(",")[0],
         params: { lang: "en", country: "in" },
         headers: {
           "X-RapidAPI-Key":
@@ -653,9 +652,11 @@ const AIConciseTrip = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
-      <div
+      {<Weather dst={values.destinationCountry} />}
+      {/* <div
         className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
       >
+      <div className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white">
         <div className="travigo-container" style={{ paddingBottom: "50px" }}>
           <div className="flex items-center justify-center text-center mb-11 md:mb-7">
             <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
@@ -676,13 +677,12 @@ const AIConciseTrip = () => {
                     </div>
                   ))
               }
-
             </div>
           </div>
         </div>
 
 
-      </div>
+      </div> */}
     </>
   );
 };
