@@ -7,6 +7,7 @@ import { Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
+import Heading from "../components/Heading";
 
 const ExistingItinerary = () => {
     const base_url = "https://storage.googleapis.com/pdf-trip-plans/";
@@ -42,13 +43,9 @@ const ExistingItinerary = () => {
         <>
             <Navbar navlinks={navlinks} />
 
-            <div className="relative md:pt-3 bg-gradient-to-r from-emerald-50 to-green-100">
+            <div className="relative py-7 md:pt-3 bg-gradient-to-r from-emerald-50 to-green-100">
                 <div className="travigo-container">
-                    <div className="flex items-center justify-center text-center mb-11 md:mb-7">
-                        <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
-                            Existing Itineraries
-                        </h1>
-                    </div>
+                    <Heading heading="Existing Itineraries" />
                     <div className="flex items-center justify-center text-center mb-11 md:mb-7">
                         <TextField
                             style={{ width: 620 }}
@@ -68,7 +65,7 @@ const ExistingItinerary = () => {
                         alignItems="flex-start"
                     >
                         {filteredList(content, search).map((city) => (
-                            <Grid item xs={3} >
+                            <Grid item xs={3}>
                                 <Link to={base_url + city.Key} target="_blank">
                                     <Card
                                         sx={{ height: "8vw", Width: 275 }}
@@ -91,7 +88,6 @@ const ExistingItinerary = () => {
                 </div>
             </div>
         </>
-
     );
 };
 

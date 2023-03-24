@@ -27,7 +27,7 @@ const Navbar = ({ navlinks }) => {
     <>
       <header
         className={`
-        nav-default ${navState && "nav-sticky"}
+        z-50 nav-default ${navState && "nav-sticky"}
       `}
       >
         <nav className="flex items-center justify-between travigo-container">

@@ -1,9 +1,19 @@
 import { Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
 import Map from "./Map";
 import MapShow from "./MapShow";
+import html2pdf from "html2pdf.js";
+import Axios from "axios";
+import {
+  List,
+  ListItem,
+  ListItemAvatar,
+  Avatar,
+  ListItemText,
+  Divider,
+} from "@mui/material";
 
 const Container = styled.div`
   display: flex;
@@ -86,6 +96,7 @@ const Title = styled.h1`
 `;
 
 const Subtitle = styled.h2`
+color:"#000",
   font-size: 1rem;
   font-weight: normal;
   font-family: "Roboto", sans-serif;
@@ -212,7 +223,7 @@ const ResponseText = styled.div`
   width: 80%;
   font-size: 1rem;
   font-weight: normal;
-  color: #fff;
+  color: #000;
   border-radius: 0.4rem;
   padding: 1rem;
   margin: 2rem;
@@ -584,29 +595,40 @@ const Main = ({ loading, response, onClick }) => (
 
 const ResponseData = ({ response }) => {
   //   console.log(response);
+  const ref = useRef();
+
   return (
     <ResponseContainer>
       <ResponseTitle>
         <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
       </ResponseTitle>
-      <ResponseText>
+      <ResponseText ref={ref}>
         <ReactMarkdown>{response}</ReactMarkdown>
       </ResponseText>
       <ButtonContainer>
         <ActionButton
-          onClick={() => {
-            const blob = new Blob([response], {
-              type: "text/plain;charset=utf-8",
-            });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", "travel-plan.txt");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            return false;
+          className="button-emrald"
+          onClick={async () => {
+            // const blob = new Blob([response], {
+            //   type: "text/plain;charset=utf-8",
+            // });
+            // const url = URL.createObjectURL(blob);
+            // const link = document.createElement("a");
+            // link.setAttribute("href", url);
+            // link.setAttribute("download", "travel-plan.txt");
+            // document.body.appendChild(link);
+            // link.click();
+            // document.body.removeChild(link);
+            // URL.revokeObjectURL(url);
+            const element = ref.current;
+            const opt = {
+              margin: 0.5,
+              filename: "itinerary.pdf",
+              image: { type: "jpeg", quality: 0.98 },
+              html2canvas: { scale: 2 },
+              jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+            };
+            html2pdf().set(opt).from(element).save();
           }}
         >
           Download
@@ -632,6 +654,67 @@ const AITravelPlanner = () => {
     options.languages[0]
   );
   const [dst, setDst] = useState(topLocations[0]?.name);
+  const [weather, setWeather] = useState([]);
+  const [locid, setLocid] = useState(0);
+  useEffect(() => {
+    if (values.destinationCountry !== "") {
+      const options = {
+        method: "GET",
+        url:
+          "https://foreca-weather.p.rapidapi.com/location/search/" +
+          values.destinationCountry
+            .split(" ")[0]
+            .substring(0, values.destinationCountry.split(" ")[0].length - 1),
+        params: { lang: "en", country: "in" },
+        headers: {
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
+      };
+      console.log(values.destinationCountry);
+      Axios.request(options)
+        .then(function (response) {
+          setLocid(response.data.locations[0].id);
+          console.log(locid);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    } else {
+      setLocid(0);
+    }
+  }, []);
+  useEffect(() => {
+    if (locid !== 0) {
+      const options = {
+        method: "GET",
+        url: "https://foreca-weather.p.rapidapi.com/forecast/daily/" + locid,
+        params: {
+          alt: "0",
+          tempunit: "C",
+          windunit: "MS",
+          periods: "12",
+          dataset: "full",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "ede3c5163fmsh01abdacf07fd2b0p1c0e4bjsn1db1b15be576",
+          "X-RapidAPI-Host": "foreca-weather.p.rapidapi.com",
+        },
+      };
+
+      Axios.request(options)
+        .then(function (response) {
+          console.log(response.data.forecast);
+          setWeather(response.data.forecast.slice(0, 7));
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    } else {
+    }
+  }, [locid]);
 
   const handleCuisineTypeClick = (cuisineType) => {
     if (selectedCuisineTypes.includes(cuisineType)) {
@@ -1027,6 +1110,36 @@ const AITravelPlanner = () => {
           dst={dst}
         />
       }
+      <div
+        className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
+      >
+        <div className="travigo-container" style={{ paddingBottom: "50px" }}>
+          <div className="flex items-center justify-center text-center mb-11 md:mb-7">
+            <h1 className="text-5xl lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
+              Weather
+            </h1>
+          </div>
+          <div className="d-flex items-center justify-center">
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+              {
+                weather.length === 0 ? <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">Sorry weather not available for this city</p> :
+                  weather.map((item) => (
+
+                    <div className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400" style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", width: "300px", padding: "7px", margin: "5px", borderRadius: "8px", paddingTop: "15px", paddingBottom: "15px" , marginTop: "10px"}}>
+                      <h4>{item.date}</h4>
+                      <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">{item.maxTemp + "/" + item.minTemp + "C"}</p>
+                      <img src={"https://developer.foreca.com/static/images/symbols/" + item.symbol + ".png"} style={{ width: "100px", height: "100px" }}></img>
+                      <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">{item.symbolPhrase}</p>
+                    </div>
+                  ))
+              }
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </>
   );
 };
