@@ -14,6 +14,7 @@ import ProtectedRoute from "./screens/ProtectedRoute";
 import ExistingItinerary from "./screens/ExistingItinerary";
 import ChooseAI from "./screens/ChooseAI";
 import ContactUsPage from "./screens/ContactUs";
+import PopularPlaces from "./screens/PopularPlaces";
 
 function App() {
   return (
@@ -100,6 +101,15 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ItineraryDetails />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/popular_places"
+              element={
+                <ProtectedRoute>
+                  <PopularPlaces />
                 </ProtectedRoute>
               }
             />

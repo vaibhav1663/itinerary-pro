@@ -1,0 +1,461 @@
+[
+    {
+        "city": "Rosario",
+        "index": 2
+    },
+    {
+        "city": "Brussels",
+        "index": 8
+    },
+    {
+        "city": "Vienna",
+        "index": 7
+    },
+    {
+        "city": "Salzburg",
+        "index": 4
+    },
+    {
+        "city": "Vorarlberg",
+        "index": 6
+    },
+    {
+        "city": "Copenhagen",
+        "index": 12
+    },
+    {
+        "city": "Rio",
+        "index": 9
+    },
+    {
+        "city": "Tyrol",
+        "index": 5
+    },
+    {
+        "city": "Munich",
+        "index": 26
+    },
+    {
+        "city": "Helsinki",
+        "index": 13
+    },
+    {
+        "city": "Avignon",
+        "index": 14
+    },
+    {
+        "city": "Paris",
+        "index": 16
+    },
+    {
+        "city": "Hamburg",
+        "index": 23
+    },
+    {
+        "city": "Cannes",
+        "index": 15
+    },
+    {
+        "city": "Berlin",
+        "index": 17
+    },
+    {
+        "city": "Frankfurt",
+        "index": 21
+    },
+    {
+        "city": "Budapest",
+        "index": 29
+    },
+    {
+        "city": "Stuttgart",
+        "index": 27
+    },
+    {
+        "city": "Bremen",
+        "index": 18
+    },
+    {
+        "city": "Dresden",
+        "index": 20
+    },
+    {
+        "city": "Freiburg",
+        "index": 22
+    },
+    {
+        "city": "Leipzig",
+        "index": 25
+    },
+    {
+        "city": "Lima",
+        "index": 39
+    },
+    {
+        "city": "Warsaw",
+        "index": 41
+    },
+    {
+        "city": "Lisbon",
+        "index": 42
+    },
+    {
+        "city": "South",
+        "index": 34
+    },
+    {
+        "city": "Buenos",
+        "index": 1
+    },
+    {
+        "city": "Prague",
+        "index": 10
+    },
+    {
+        "city": "Florence",
+        "index": 32
+    },
+    {
+        "city": "Engelberg",
+        "index": 53
+    },
+    {
+        "city": "Bern",
+        "index": 52
+    },
+    {
+        "city": "Geneva",
+        "index": 54
+    },
+    {
+        "city": "Basel",
+        "index": 51
+    },
+    {
+        "city": "Philadelphia",
+        "index": 60
+    },
+    {
+        "city": "Istanbul",
+        "index": 56
+    },
+    {
+        "city": "Las",
+        "index": 58
+    },
+    {
+        "city": "London",
+        "index": 57
+    },
+    {
+        "city": "New",
+        "index": 59
+    },
+    {
+        "city": "Washington,",
+        "index": 62
+    },
+    {
+        "city": "Bernese",
+        "index": 71
+    },
+    {
+        "city": "Valais",
+        "index": 81
+    },
+    {
+        "city": "Florida",
+        "index": 84
+    },
+    {
+        "city": "Kathmandu",
+        "index": 101
+    },
+    {
+        "city": "Cascais",
+        "index": 100
+    },
+    {
+        "city": "Mustang",
+        "index": 102
+    },
+    {
+        "city": "Cape",
+        "index": 103
+    },
+    {
+        "city": "Northern",
+        "index": 107
+    },
+    {
+        "city": "Southern",
+        "index": 106
+    },
+    {
+        "index": 108
+    },
+    {
+        "city": "Liechtenstein",
+        "index": 114
+    },
+    {
+        "city": "Scania",
+        "index": 123
+    },
+    {
+        "city": "Luxor,",
+        "index": 109
+    },
+    {
+        "city": "Hanover",
+        "index": 131
+    },
+    {
+        "city": "Central",
+        "index": 105
+    },
+    {
+        "city": "Johannesburg",
+        "index": 104
+    },
+    {
+        "city": "Colombo",
+        "index": 112
+    },
+    {
+        "city": "Argolis",
+        "index": 121
+    },
+    {
+        "city": "Thessaloniki",
+        "index": 115
+    },
+    {
+        "city": "Porto",
+        "index": 151
+    },
+    {
+        "city": "Arles",
+        "index": 155
+    },
+    {
+        "city": "Sofia",
+        "index": 158
+    },
+    {
+        "city": "Santiago",
+        "index": 153
+    },
+    {
+        "city": "Cancún",
+        "index": 150
+    },
+    {
+        "city": "Azores",
+        "index": 152
+    },
+    {
+        "city": "Pisa",
+        "index": 157
+    },
+    {
+        "city": "Aegean",
+        "index": 159
+    },
+    {
+        "city": "Arles",
+        "index": 155
+    },
+    {
+        "city": "Porto",
+        "index": 151
+    },
+    {
+        "city": "Normandy",
+        "index": 160
+    },
+    {
+        "city": "Singapore",
+        "index": 170
+    },
+    {
+        "city": "Bangkok",
+        "index": 169
+    },
+    {
+        "city": "Shanghai",
+        "index": 178
+    },
+    {
+        "city": "Hong",
+        "index": 174
+    },
+    {
+        "city": "Kuala",
+        "index": 171
+    },
+    {
+        "city": "Innsbruck",
+        "index": 164
+    },
+    {
+        "city": "Durban",
+        "index": 168
+    },
+    {
+        "city": "Antalya",
+        "index": 172
+    },
+    {
+        "city": "Naples",
+        "index": 162
+    },
+    {
+        "city": "French",
+        "index": 163
+    },
+    {
+        "city": "South",
+        "index": 165
+    },
+    {
+        "city": "Victoria,",
+        "index": 167
+    },
+    {
+        "city": "Miami",
+        "index": 176
+    },
+    {
+        "city": "Seattle",
+        "index": 198
+    },
+    {
+        "city": "Adelaide",
+        "index": 203
+    },
+    {
+        "city": "Sydney",
+        "index": 200
+    },
+    {
+        "city": "Konstanz",
+        "index": 204
+    },
+    {
+        "city": "Melbourne",
+        "index": 202
+    },
+    {
+        "city": "Mumbai",
+        "index": 201
+    },
+    {
+        "city": "Marrakech",
+        "index": 208
+    },
+    {
+        "city": "Granada,",
+        "index": 207
+    },
+    {
+        "city": "Hanoi",
+        "index": 205
+    },
+    {
+        "city": "Angkor",
+        "index": 206
+    },
+    {
+        "city": "Tasmania",
+        "index": 209
+    },
+    {
+        "city": "Nazareth",
+        "index": 211
+    },
+    {
+        "city": "Liverpool",
+        "index": 210
+    },
+    {
+        "city": "Port",
+        "index": 217
+    },
+    {
+        "city": "Riga",
+        "index": 213
+    },
+    {
+        "city": "Upper",
+        "index": 218
+    },
+    {
+        "city": "Dead",
+        "index": 214
+    },
+    {
+        "city": "Burgenland",
+        "index": 215
+    },
+    {
+        "city": "Eastern",
+        "index": 216
+    },
+    {
+        "city": "South",
+        "index": 219
+    },
+    {
+        "city": "Liguria",
+        "index": 221
+    },
+    {
+        "city": "Mpumalanga",
+        "index": 234
+    },
+    {
+        "city": "Santiago",
+        "index": 226
+    },
+    {
+        "city": "Sogn",
+        "index": 232
+    },
+    {
+        "city": "Boston",
+        "index": 260
+    },
+    {
+        "city": "Carinthia",
+        "index": 256
+    },
+    {
+        "city": "Whistler",
+        "index": 282
+    },
+    {
+        "city": "Alaska",
+        "index": 254
+    },
+    {
+        "city": "Strasbourg",
+        "index": 293
+    },
+    {
+        "city": "Lourdes",
+        "index": 311
+    },
+    {
+        "city": "San",
+        "index": 366
+    },
+    {
+        "city": "Messina",
+        "index": 424
+    },
+    {
+        "city": "Crete",
+        "index": 404
+    }
+]
