@@ -9,17 +9,19 @@ export default function Weather(props){
 
     useEffect(() => {
         console.log("weather", props.dst);
-        if (props.dst !== "") {
+        setLocid(0);
+          if (props.dst !== "") {
+            const search = encodeURIComponent(`${props.dst.split(",")[0]}`)
             const options = {
                 method: 'GET',
-                url: `https://foreca-weather.p.rapidapi.com/location/search/${props.dst.split(" ")[0].substring(0, props.dst.split(" ")[0].length - 1)}`,
-                params: {lang: 'en', country: 'in'},
+                url: `https://foreca-weather.p.rapidapi.com/location/search/${search}`,
+                params: {lang: 'en'},
                 headers: {
                     'X-RapidAPI-Key': 'd7cf975d26mshad9046c0570fc82p1651adjsn172eaecfa72e',
                     'X-RapidAPI-Host': 'foreca-weather.p.rapidapi.com'
                 }
             };
-                
+            console.log(options.url);
             Axios.request(options)
             .then(function (response) {
               setLocid(response.data.locations[0].id);
@@ -55,12 +57,17 @@ export default function Weather(props){
           Axios.request(options)
             .then(function (response) {
               console.log(response.data.forecast);
-              setWeather(response.data.forecast.slice(0, 7));
+              if (response.data.forecast.length===0){
+                setWeather([]);
+              } else{
+                setWeather(response.data.forecast.slice(0, 7));
+              }
             })
             .catch(function (error) {
               console.error(error);
             });
         } else {
+          setWeather([]);
         }
       }, [locid]);
 

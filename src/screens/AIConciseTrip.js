@@ -652,6 +652,7 @@ const AIConciseTrip = () => {
         </Panel>
       </Container>
       {<MapShow title="Maps" dst={values.destinationCountry} />}
+      {<Weather dst={values.destinationCountry} />}
       {/* <div
         className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white"
       >
