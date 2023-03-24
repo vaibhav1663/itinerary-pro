@@ -103,37 +103,37 @@ const Map = (props) => {
     msg = "Type City name to view more";
   } else if (type === "") {
     website =
-      "https://www.google.com/maps/embed/v1/place?q=" +
+      "https://www.google.com/maps/embed/v1/place?zoom=14&q=" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Showing Map of " + city;
   } else if (type === "bus") {
     website =
-      "https://www.google.com/maps/embed/v1/search?q=Bus+in+" +
+      "https://www.google.com/maps/embed/v1/search?zoom=14&q=Bus+in+" +
       city.split(", ")[0] +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Bus Stops in " + city + " will be highlighted";
   } else if (type === "rail") {
     website =
-      "https://www.google.com/maps/embed/v1/search?q=Railways+in+" +
+      "https://www.google.com/maps/embed/v1/search?zoom=13&q=Railways+in+" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Train and Metro Stops in " + city + " will be highlighted";
   } else if (type === "air") {
     website =
-      "https://www.google.com/maps/embed/v1/search?q=Airports+in+" +
+      "https://www.google.com/maps/embed/v1/search?zoom=12&q=Airports+in+" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Airports in " + city + " will be highlighted";
   } else if (type === "hotels") {
     website =
-      "https://www.google.com/maps/embed/v1/search?q=hotels+in+" +
+      "https://www.google.com/maps/embed/v1/search?zzoom=14&q=hotels+in+" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Hotels in " + city + " will be highlighted";
   } else if (type === "resto") {
     website =
-      "https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" +
+      "https://www.google.com/maps/embed/v1/search?zoom=16&q=Restaurants+in+" +
       city +
       `&key=${process.env.REACT_APP_MAPKEY}`;
     msg = "Restaurants in " + city + " will be highlighted";
