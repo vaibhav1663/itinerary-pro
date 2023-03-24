@@ -1134,6 +1134,7 @@ const AITravelPlanner = () => {
                         item.symbol +
                         ".png"
                       }
+                      alt="forecast"
                     ></img>
                     <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">
                       {item.symbolPhrase}
