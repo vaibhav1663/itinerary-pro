@@ -1095,15 +1095,19 @@ const AITravelPlanner = () => {
           </div>
           <div className="d-flex items-center justify-center">
             <div style={{display: "flex" }}>
-              {weather.map((item) => (
+            {
+              weather.length === 0 ? <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">Sorry weather not available for this city</p> :
+                weather.map((item) => (
 
-                <div style={{display: "flex",alignItems: "center",justifyContent: "center", flexDirection: "column", width: "400px", padding: "7px", margin: "5px", border: "1px black solid", borderRadius: "8px"}}>
-                  <h4>{item.date}</h4>
-                  <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">{item.maxTemp+ "/" +item.minTemp+"C" }</p>
-                  <img src={"https://developer.foreca.com/static/images/symbols/" + item.symbol + ".png"}></img>
-                  <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">{item.symbolPhrase}</p>
-                </div>
-              ))}
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", width: "400px", padding: "7px", margin: "5px", border: "1px black solid", borderRadius: "8px" }}>
+                    <h4>{item.date}</h4>
+                    <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">{item.maxTemp + "/" + item.minTemp + "C"}</p>
+                    <img src={"https://developer.foreca.com/static/images/symbols/" + item.symbol + ".png"}></img>
+                    <p className="text-2xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">{item.symbolPhrase}</p>
+                  </div>
+                ))
+              }
+        
             </div>
           </div>
         </div>
