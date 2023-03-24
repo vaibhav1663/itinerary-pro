@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import styled from "styled-components";
 import Map from "./Map";
+import MapShow from "./MapShow";
 
 const Container = styled.div`
   display: flex;
@@ -1008,9 +1009,7 @@ const AITravelPlanner = () => {
           </FormContainer>
         </Panel>
       </Container>
-      <Box justifyContent={"center"}>
-        {loading ? <></> : response && <Map dst={values.destinationCountry}/>}
-      </Box>
+      {<MapShow title="Maps" dst={values.destinationCountry}/>}
     </>
   );
 };

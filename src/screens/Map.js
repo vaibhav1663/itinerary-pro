@@ -29,7 +29,7 @@ const Map = (props) => {
     const [minTemp, setMinTemp] = React.useState("");
     const [phrase, setPhrase] = React.useState("");
     const [find, setFind] = useState(false);
-    var website = "https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.MAPKEY}`;
+    var website = "https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
     var msg = "";
     useEffect(() => {
         if (city !== '') {
@@ -86,32 +86,32 @@ const Map = (props) => {
         setType(newType);
     };
     if (city === "") {
-        website = `https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.MAPKEY}`;
+        website = `https://www.google.com/maps/embed/v1/place?q=pune&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Type City name to view more";
     }
     else if (type === "") {
-        website = `https://www.google.com/maps/embed/v1/place?q=" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/place?q=" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Showing Map of " + city;
     } else if (type === "bus") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Bus+in+" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=Bus+in+" + city.split(", ")[0] + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Bus Stops in " + city + " will be highlighted";
     }
     else if (type === "rail") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Railways+in+" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=Railways+in+" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Train and Metro Stops in " + city + " will be highlighted";
     } else if (type === "air") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Airports+in+" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=Airports+in+" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Airports in " + city + " will be highlighted";
     } else if (type === "hotels") {
-        website = `https://www.google.com/maps/embed/v1/search?q=hotels+in+" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=hotels+in+" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Hotels in " + city + " will be highlighted";
     } else if (type === "resto") {
-        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" + city + "&key=${process.env.MAPKEY}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=Restaurants+in+" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Restaurants in " + city + " will be highlighted";
     }
     if (type === "trial") {
-        // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
-        website = `https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" + city + "&key=${process.env.MAPKEY}`;
+        // website = `https://www.google.com/maps/embed/v1/directions?key=${process.env.REACT_APP_MAPKEY}&origin=${src}&destination=${dst}&waypoints=${wayPoint}`;
+        website = "https://www.google.com/maps/embed/v1/search?q=Restaurants+buses+in+" + city + `&key=${process.env.REACT_APP_MAPKEY}`;
         msg = "Trial"
     }
 
@@ -128,19 +128,48 @@ const Map = (props) => {
                         onChange={handleChange}
                         aria-label="Platform"
                     >
-                        <ToggleButton value="bus">Buses</ToggleButton>
-                        <ToggleButton value="air">Airport</ToggleButton>
-                        <ToggleButton value="rail">Railways</ToggleButton>
-                        <ToggleButton value="hotels">Hotels</ToggleButton>
-                        <ToggleButton value="resto">Restaurants</ToggleButton>
-                        <ToggleButton value="trial">Trial</ToggleButton>
-                        <ToggleButton value="">None</ToggleButton>
+                        <ToggleButton value="bus">
+                        <div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                bus stations
+                            </h1>
+                            </div>
+                        </ToggleButton>
+                        <ToggleButton value="air"><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                airports
+                            </h1>
+                            </div></ToggleButton>
+                        <ToggleButton value="rail"><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                Railways
+                            </h1>
+                            </div></ToggleButton>
+                        <ToggleButton value="hotels"><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                hotels
+                            </h1>
+                            </div></ToggleButton>
+                        <ToggleButton value="resto"><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                restaurants
+                            </h1>
+                            </div></ToggleButton>
+                        <ToggleButton value="trial"><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                trial
+                            </h1>
+                            </div></ToggleButton>
+                        <ToggleButton value=""><div className="flex items-start flex-col text-slate-900">
+                            <h1 className="text-lg sm:text-sm font-bold">
+                                None
+                            </h1>
+                            </div></ToggleButton>
                     </ToggleButtonGroup>
                 </Grid>
         </div>
-        <div className="map">
-            <div></div>
-            <div style={{ maxHeight: "1000px", overflow: "hidden", color: "red", width: "100vw"}}>
+        <div className="map justify-center">
+            <div style={{ maxHeight: "1000px", overflow: "hidden", color: "red", width: "80vw"}}>
                 <div id="google-maps-display"><iframe title="Gmap" frameBorder="0"
                     src={website} ></iframe>
                 </div>
