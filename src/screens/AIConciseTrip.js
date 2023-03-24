@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { db } from "../firebase";
+import { collection, getDoc, addDoc } from "firebase/firestore";
+
+import { useUserAuth } from "../context/UserAuthContext";
+
 
 const Container = styled.div`
   display: flex;
@@ -414,6 +419,17 @@ const AIConciseTrip = () => {
   const [response, setResponse] = useState("");
   const [values, setValues] = useState(defaultValues);
 
+  const { user } = useUserAuth();
+  var ref = "trash";
+  if(user && user.uid){
+    ref = collection(db, user && user.uid)
+  }
+  
+  const addDocument = async (data) => {
+    await addDoc(ref, data);
+    console.log("Uploaded")
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues((prevState) => ({
@@ -477,7 +493,9 @@ const AIConciseTrip = () => {
     if (data.status === "OK") {
       console.log("click", data.file_url);
       setResponse(data.file_url);
+      addDocument({ url: data.file_url, city: values.destinationCountry, duration: values.tripDuration, timestamp : Date.now()})
     }
+
 
     setLoading(false);
   };

@@ -14,10 +14,43 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import Badge from "@mui/material/Badge";
-import { Link } from "@mui/material";
-import Navbar from "../components/Navbar";
-import { navlinks } from "../data/staticdata.js";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import { collection, getDocs, orderBy } from "@firebase/firestore";
+import { useEffect } from "react";
 
+import { styled } from '@mui/material/styles';
+import { db } from "../firebase";
+import FileOpenIcon from '@mui/icons-material/FileOpen';
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 // STYLES
 const styles = {
   details: {
@@ -30,8 +63,10 @@ const styles = {
     color: "#899499"
   }
 };
-
+const rows = [{ name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }, { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }, { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24 }];
 export default function Profile() {
+  const [history, setHistory] = React.useState([]);
+
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -42,9 +77,21 @@ export default function Profile() {
       console.log(error.message);
     }
   };
+  useEffect(() => {
+    const getHistory = async () => {
+      if (user) {
+        const ref = collection(db, user.uid);
+        const data = await getDocs(ref, orderBy("timestamp"))
+        setHistory(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      }
+    };
+    getHistory();
+  }, [user])
+
   return (
+
+
     <>
-      <Navbar navlinks={navlinks} />
       <CssBaseline>
         {/* BACKGROUND */}
         <Grid container direction="column" sx={{ overflowX: "hidden" }}>
@@ -93,23 +140,43 @@ export default function Profile() {
                     >
                       <Avatar
                         sx={{ width: 100, height: 100, mb: 1.5 }}
-                        src={user.photoURL}
+                        src={user && user.photoURL}
                       ></Avatar>
                     </Badge>
 
                     {/* DESCRIPTION */}
-                    <Typography variant="h6">{user.displayName}</Typography>
-                    <Typography color="text.secondary">{user.email}</Typography>
+                    <Typography variant="h6">{user && user.displayName}</Typography>
+                    <Typography color="text.secondary">{user && user.email}</Typography>
                   </Grid>
                   {/* CARD HEADER END */}
 
                   {/* DETAILS */}
                   <Grid container>
-                    <Grid item xs={12}>
-                      <Typography style={styles.details}>trip 1</Typography>
-                      <Typography style={styles.details}>trip 2</Typography>
-                      <Typography style={styles.details}>trip 3</Typography>
-                    </Grid>
+                    <TableContainer component={Paper}>
+                      <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                        <TableHead>
+                          <TableRow>
+                            <StyledTableCell>Date-Time</StyledTableCell>
+                            <StyledTableCell align="right">Destination</StyledTableCell>
+                            <StyledTableCell align="right">Duration</StyledTableCell>
+                            <StyledTableCell align="right">PDF</StyledTableCell>
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {history.map((row) => (
+                            <StyledTableRow key={row.city}>
+                              <StyledTableCell component="th" scope="row">
+                                {("" + new Date(row.timestamp)).substring(0, 25)}
+                              </StyledTableCell>
+                              <StyledTableCell align="right">{row.city}</StyledTableCell>
+                              <StyledTableCell align="right">{row.duration}</StyledTableCell>
+                              <StyledTableCell align="right"><Link to={row.url} target="_blank"><FileOpenIcon /></Link></StyledTableCell>
+
+                            </StyledTableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
                   </Grid>
 
                   {/* BUTTON */}
