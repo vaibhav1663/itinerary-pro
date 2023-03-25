@@ -10,7 +10,7 @@ const Navbar = ({ navlinks, ctaVisible = true }) => {
   const onTriggerPopup = () => setPopupState(!popupState);
 
   const onNavScroll = () => {
-    if (window.scrollY > 180) {
+    if (window.scrollY > 80) {
       setNavState(true);
     } else {
       setNavState(false);
