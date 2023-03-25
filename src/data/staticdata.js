@@ -4,7 +4,7 @@ import memoryimg from "../images/memory.png";
 export const navlinks = [
   { link: "Home", id: "home", path: "/" },
   { link: "About", id: "about", path: "/AboutUs" },
-  { link: "Explore", id: "explore", path: "/third_itinerary" },
+  { link: "Explore", id: "explore", path: "/explore" },
   {
     link: "Existing Itineraries",
     id: "existing_itineraries",

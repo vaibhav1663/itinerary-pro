@@ -1,6 +1,30 @@
 {
     "list": [
         {
+            "city": "Mumbai",
+            "index": 201
+        },
+        {
+            "city": "Singapore",
+            "index": 170
+        },
+        {
+            "city": "Bangkok",
+            "index": 169
+        },
+        {
+            "city": "Shanghai",
+            "index": 178
+        },
+        {
+            "city": "Sydney",
+            "index": 200
+        },
+        {
+            "city": "Whistler",
+            "index": 282
+        },
+        {
             "city": "Rosario",
             "index": 2
         },
@@ -273,18 +297,6 @@
             "index": 160
         },
         {
-            "city": "Singapore",
-            "index": 170
-        },
-        {
-            "city": "Bangkok",
-            "index": 169
-        },
-        {
-            "city": "Shanghai",
-            "index": 178
-        },
-        {
             "city": "Hong",
             "index": 174
         },
@@ -333,20 +345,12 @@
             "index": 203
         },
         {
-            "city": "Sydney",
-            "index": 200
-        },
-        {
             "city": "Konstanz",
             "index": 204
         },
         {
             "city": "Melbourne",
             "index": 202
-        },
-        {
-            "city": "Mumbai",
-            "index": 201
         },
         {
             "city": "Marrakech",

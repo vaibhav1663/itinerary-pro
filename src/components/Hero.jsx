@@ -18,9 +18,9 @@ const Hero = ({ hero: { title, subtitle, btn1, btn2, text, img } }) => {
               <button type="button" className="button-emrald px-7 text-base">
                 <NavLink to={`/ChooseAI`}>Try AI Itinerary </NavLink>
               </button>
-              {/* <button type="button" className="button-light">
-                {btn2}
-              </button> */}
+              <button type="button" className="button-light">
+                <NavLink to={`/explore`}>Explore Trips</NavLink>
+              </button>
             </div>
           </div>
           <div className="flex items-center justify-center mb-11">

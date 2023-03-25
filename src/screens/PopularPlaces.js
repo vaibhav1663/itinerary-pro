@@ -5,7 +5,15 @@ import Heading from "../components/Heading";
 import mapping from "../city_num_mapping.json";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import place1 from "../images/img1.webp";
+import place3 from "../images/img3.webp";
+import place4 from "../images/img4.webp";
+import place5 from "../images/img5.jpg";
+import place6 from "../images/img6.webp";
+import place7 from "../images/img7.webp";
+import place8 from "../images/img8.webp";
+import place9 from "../images/img9.webp";
+import place10 from "../images/img10.webp";
 const base_url = "https://www.getyourguide.com";
 
 const PopularPlaces = () => {
@@ -14,6 +22,17 @@ const PopularPlaces = () => {
   function handleTo(e) {
     setTo(e.target.value);
   }
+  const places = [
+    place1,
+    place3,
+    place4,
+    place5,
+    place6,
+    place7,
+    place8,
+    place9,
+    place10,
+  ];
   useEffect(() => {
     setAttraction([]);
 
@@ -51,7 +70,7 @@ const PopularPlaces = () => {
             (info) => {
               const placeInfo = {
                 label: info["label"],
-                img: info["image"],
+                img: places[Math.floor(Math.random() * 9)],
                 url: info["url"],
               };
               // console.log(placeInfo);
@@ -66,15 +85,19 @@ const PopularPlaces = () => {
   }, [to]);
   return (
     <div
-      style={{ mindHeight: "100vh" }}
+      style={{ mindHeight: "100vh", padding: 20 }}
       className="pt-10 bg-gradient-to-r from-emerald-50 to-green-100"
     >
       <Navbar navlinks={navlinks} />
       <Heading heading="Popular Places" />
-      <div className="relative py-7 md:pt-3 ">
-        <FormControl className="" variant="filled" sx={{ m: 1, minWidth: 180 }}>
+      <div className="relative py-7 md:pt-3 flex justify-center items-center sm:w-full">
+        <FormControl
+          className=""
+          variant="filled"
+          sx={{ m: 1, minWidth: 180, width: "20%" }}
+        >
           <InputLabel id="demo-simple-select-standard-label">
-            Destination
+            Select Destination
           </InputLabel>
           <Select
             labelId="demo-simple-select-standard-label"
@@ -90,7 +113,7 @@ const PopularPlaces = () => {
         </FormControl>
       </div>
       {
-        <div className="grid items-center grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
+        <div className="m-5 grid items-center grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-5">
           {attraction.map((val, i) => (
             <Link to={base_url + val.url} target="_blank">
               <div
@@ -99,7 +122,7 @@ const PopularPlaces = () => {
               >
                 <div className="flex items-center">
                   <img
-                    src={val.image}
+                    src={place1}
                     alt={val.label}
                     className="w-20 h-20 sm:w-16 sm:h-16 rounded-lg filter drop-shadow-lg"
                   />

@@ -80,7 +80,7 @@ function App() {
               }
             />
             <Route
-              path="/third_itinerary"
+              path="/explore"
               element={
                 <ProtectedRoute>
                   <ThirdItinerary />
