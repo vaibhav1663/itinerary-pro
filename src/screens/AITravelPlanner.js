@@ -601,7 +601,7 @@ const defaultValues = {
 
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generater ⭐️</Title>
+    <Title>  AI Trip Generater  </Title>
     {!response && (
       <Subtitle style={{ color: "#000", margin: 10 }}>
         Fill the form to generate your itinerary
@@ -621,7 +621,7 @@ const Main = ({ loading, response, onClick }) => (
 );
 
 const ResponseData = ({ response }) => {
-  //   console.log(response);
+    console.log(response);
   const ref = useRef();
 
   return (
@@ -630,7 +630,7 @@ const ResponseData = ({ response }) => {
         <span role="img" aria-label="emoji"></span> Your travel plan is ready 🎉
       </ResponseTitle>
       <ResponseText ref={ref}>
-        <ReactMarkdown>{response}</ReactMarkdown>
+        <ReactMarkdown children={response} className="markdown"></ReactMarkdown>
       </ResponseText>
       <ButtonContainer>
         <ActionButton
