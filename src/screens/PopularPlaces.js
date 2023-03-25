@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
 import Heading from "../components/Heading";
 import mapping from "../city_num_mapping.json";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import place1 from "../images/img1.webp";
 import place3 from "../images/img3.webp";
@@ -14,13 +14,26 @@ import place7 from "../images/img7.webp";
 import place8 from "../images/img8.webp";
 import place9 from "../images/img9.webp";
 import place10 from "../images/img10.webp";
+import PopCard from "./PopCard";
 const base_url = "https://www.getyourguide.com";
 
+function getImageLink(photoRef) {
+  console.log(photoRef);
+  return (
+    `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${photoRef}&key=${process.env.REACT_APP_MAPKEY}`
+  )
+}
+
 const PopularPlaces = () => {
-  const [to, setTo] = useState("");
+  const [to, setTo] = useState(201);
   const [attraction, setAttraction] = useState([]);
+  const [popular, setPopular] = useState([]);
+  const [place, setPlace] = useState("");
   function handleTo(e) {
     setTo(e.target.value);
+    setPlace(mapping["list"].filter((pla) => {
+      return pla.index == e.target.value
+    })[0].city)
   }
   const places = [
     place1,
@@ -33,6 +46,7 @@ const PopularPlaces = () => {
     place9,
     place10,
   ];
+
   useEffect(() => {
     setAttraction([]);
 
@@ -81,8 +95,37 @@ const PopularPlaces = () => {
           );
         });
     }
+
+    async function getPop() {
+      let params = {
+        to: place
+      }
+      await fetch(`http://localhost:4003/api/test`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      },
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setPopular(data.results);
+        })
+    }
     getAttractions();
+    // getPop();
   }, [to]);
+
+  function handleDest(e, values){
+    // if (values?.index===undefined){
+    //   setTo(201)
+    // }
+    setTo(values?.index)
+  }
+
   return (
     <div
       style={{ mindHeight: "100vh", padding: 20 }}
@@ -96,7 +139,7 @@ const PopularPlaces = () => {
           variant="filled"
           sx={{ m: 1, minWidth: 180, width: "20%" }}
         >
-          <InputLabel id="demo-simple-select-standard-label">
+          {/* <InputLabel id="demo-simple-select-standard-label">
             Select Destination
           </InputLabel>
           <Select
@@ -107,9 +150,16 @@ const PopularPlaces = () => {
             MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
           >
             {mapping.list.map((city) => {
-              return <MenuItem value={`${city.index}`}>{city.city}</MenuItem>;
+              return <MenuItem value={`${city.index}`}>{city.label}</MenuItem>;
             })}
-          </Select>
+          </Select> */}
+          <Autocomplete
+            id="combo-box-demo"
+            options={mapping["list"]}
+            sx={{ width: 300 }}
+            onChange={handleDest}
+            renderInput={(params) => <TextField {...params} label="Destination" />}
+          />
         </FormControl>
       </div>
       {
