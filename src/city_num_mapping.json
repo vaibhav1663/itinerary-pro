@@ -5,6 +5,10 @@
             "index": 201
         },
         {
+            "label": "Pune",
+            "index": 2625
+        },
+        {
             "label": "Singapore",
             "index": 170
         },
@@ -427,6 +431,18 @@
         {
             "label": "Crete",
             "index": 404
+        },
+        {
+            "label": "Bali",
+            "index": 347
+        },
+        {
+            "label": "Delhi",
+            "index": 231
+        },
+        {
+            "label": "Kolkata",
+            "index": 275
         }
     ]
 }
