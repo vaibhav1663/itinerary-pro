@@ -50,7 +50,7 @@ const Navbar = ({ navlinks, ctaVisible = true }) => {
               <button
                 type="button"
                 className={`button-emrald px-7 text-base ${
-                  !ctaVisible && "opacity-0"
+                  !ctaVisible && "opacity-0 pointer-events-none"
                 }`}
               >
                 <NavLink to={`/ChooseAI`}>AI Itinerary</NavLink>
