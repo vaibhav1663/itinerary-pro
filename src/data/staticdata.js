@@ -29,8 +29,8 @@ export const memory = {
   text: "What we have always taken care for 10 years is always prioritizing the comfort of our users. So, do not our quality.",
   img: memoryimg,
   experience: [
-    { number: "10", title: "Year Experience" },
-    { number: "400", title: "Year Collaboration" },
-    { number: "30k+", title: "Happy Customer" },
+    { number: "10", title: "Ai-generated Itinerary" },
+    { number: "400", title: "Detailed PDFs" },
+    { number: "30k+", title: "Multilinugal Itinerary" },
   ],
 };

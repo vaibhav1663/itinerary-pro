@@ -1,7 +1,8 @@
 import React from "react";
-
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import TranslateIcon from '@mui/icons-material/Translate';
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 const Memory = ({ memory: { title, text, subtitle, img, experience } }) => {
-  // console.log(memory)
   return (
     <>
       <div className="relative my-16 md:mb-7">
@@ -23,19 +24,36 @@ const Memory = ({ memory: { title, text, subtitle, img, experience } }) => {
             </h1>
             <p className="text-base my-5 sm:text-sm">{text}</p>
             <div className="grid items-center grid-cols-3 gap-7 xl:gap-3">
-              {experience?.map((val, i) => (
+
                 <div
-                  key={i}
+                  key="1"
                   className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400"
                 >
-                  <h1 className="text-3xl xl:text-2xl sm:text-xl font-bold drop-shadow-lg">
-                    {val.number}
-                  </h1>
+                  <PrecisionManufacturingIcon fontSize="large"/>
                   <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
-                    {val.title}
+                    AI-generated Itinerary
                   </p>
                 </div>
-              ))}
+
+                <div
+                  key="2"
+                  className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400"
+                >
+                  <PictureAsPdfIcon fontSize="large"/>
+                  <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                    Detailed PDFs
+                  </p>
+                </div>
+
+                <div
+                  key="3"
+                  className="bg-gradient-to-b from-blue-300 to-green-300 shadow-lg shadow-emerald-200 flex items-center justify-center flex-col py-7 px-5 xl:p-5 rounded-lg text-slate-900 filter cursor-pointer hover:scale-105 transition-all duration-400"
+                >
+                  <TranslateIcon fontSize="large"/>
+                  <p className="text-lg xl:text-base sm:text-sm xsm:text-xs font-medium">
+                    Multilinugal Itinerary
+                  </p>
+                </div>
             </div>
           </div>
         </div>
