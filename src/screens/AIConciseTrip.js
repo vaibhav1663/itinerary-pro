@@ -414,6 +414,7 @@ const GenerateButton = ({ loading, onClick }) => (
   <Button
     onClick={onClick}
     disabled={loading}
+    className="button-emrald"
     style={{ width: "20%", minWidth: "fit-content", marginTop: "20px" }}
   >
     {loading ? "Please wait..." : "Generate"}

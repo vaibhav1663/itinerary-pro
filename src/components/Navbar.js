@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import menu from "../images/menu.svg";
 import PopupMenu from "./PopupMenu";
-const Navbar = ({ navlinks }) => {
+const Navbar = ({ navlinks, ctaVisible = true }) => {
   const [popupState, setPopupState] = useState(false);
   const [navState, setNavState] = useState(false);
   const onTriggerPopup = () => setPopupState(!popupState);
@@ -47,7 +47,12 @@ const Navbar = ({ navlinks }) => {
           </ul>
           <ul className="flex items-center lg:hidden">
             <li>
-              <button type="button" className="button-emrald px-7 text-base">
+              <button
+                type="button"
+                className={`button-emrald px-7 text-base ${
+                  !ctaVisible && "opacity-0 pointer-events-none"
+                }`}
+              >
                 <NavLink to={`/ChooseAI`}>AI Itinerary</NavLink>
               </button>
             </li>
