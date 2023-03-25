@@ -185,7 +185,7 @@ const Map = (props) => {
                 <h1 className="text-lg sm:text-sm font-bold">restaurants</h1>
               </div>
             </ToggleButton>
-            <ToggleButton value="trial">
+            {/* <ToggleButton value="trial">
               <div className="flex items-start flex-col text-slate-900">
                 <h1 className="text-lg sm:text-sm font-bold">trial</h1>
               </div>
@@ -194,7 +194,7 @@ const Map = (props) => {
               <div className="flex items-start flex-col text-slate-900">
                 <h1 className="text-lg sm:text-sm font-bold">None</h1>
               </div>
-            </ToggleButton>
+            </ToggleButton> */}
           </ToggleButtonGroup>
         </Grid>
       </div>

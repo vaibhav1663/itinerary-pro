@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import menu from "../images/menu.svg";
 import PopupMenu from "./PopupMenu";
+import iti from "../images/itinerary_pro.png"
+
 const Navbar = ({ navlinks, ctaVisible = true }) => {
   const [popupState, setPopupState] = useState(false);
   const [navState, setNavState] = useState(false);
@@ -32,9 +34,8 @@ const Navbar = ({ navlinks, ctaVisible = true }) => {
       >
         <nav className="flex items-center justify-between travigo-container">
           <NavLink to={`/`} className="flex items-center">
-            {/* <img src={logo} alt="logo/img" className="w-22 h-9 object-fill" />
-             */}
-            ItineraryPro
+            <img src={iti} alt="Title image" className="w-24 object-fill" />
+            
           </NavLink>
           <ul className="flex items-center lg:hidden gap-7">
             {navlinks?.map((val, i) => (

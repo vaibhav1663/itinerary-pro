@@ -25,7 +25,7 @@ function getImageLink(photoRef) {
 }
 
 const PopularPlaces = () => {
-  const [to, setTo] = useState(201);
+  const [to, setTo] = useState("");
   const [attraction, setAttraction] = useState([]);
   const [popular, setPopular] = useState([]);
   const [place, setPlace] = useState("");
