@@ -106,4 +106,8 @@
     animation-name: fadeup;
     animation-duration: 3s;
   }
+  #Headings {
+    animation-name: fadeup;
+    animation-duration: 1s;
+  }
 }

@@ -16,6 +16,7 @@ import BasicCard from "./PlaceCard2";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { navlinks } from "../data/staticdata.js";
+import Heading from "../components/Heading";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -161,16 +162,10 @@ export default function ThirdItinerary() {
   };
 
   return (
-    <div className="bg-gradient-to-r from-emerald-50 to-green-100">
+    <div className="bg-gradient-to-r from-emerald-50 to-green-100 min-h-screen">
       <Navbar navlinks={navlinks} />
       <div className="relative  py-7 md:pt-3 md:pl-10">
-        <div className="travigo-container">
-          <div className="flex mt-10 items-center justify-center text-center mb-11 md:mb-7">
-            <h1 className="text-5xl mt-10 lg:text-4xl md:text-3xl sm:text-2xl xsm:text-xl font-bold filter drop-shadow-lg text-slate-900">
-              MakeMyTrip Itineraries
-            </h1>
-          </div>
-        </div>
+        <Heading heading="MakeMyTrip Itineraries" />
       </div>
       <Box component="form">
         <Grid container direction={"row"} justifyContent={"center"}>

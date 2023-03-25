@@ -7,7 +7,7 @@ const About = () => {
     <>
       <Navbar navlinks={navlinks} />
 
-      <div className="bg-gradient-to-b from-teal-200 to-white min-h-screen">
+      <div className="bg-gradient-to-b from-emerald-50 to-green-100 min-h-screen">
         <div className="container mx-auto py-16 px-4">
           <Heading heading="About Us" />
 

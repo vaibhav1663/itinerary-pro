@@ -29,7 +29,36 @@ const Container = styled.div`
     -ms-overflow-style: none;
   }
 `;
-
+const PaddingDiv = styled.div`
+  background-image: linear-gradient(
+    to bottom right,
+    #e9fdf9,
+    #88f7e8,
+    #9af6e4,
+    #c2fa88,
+    #59c26c
+  );
+  background-size: 400% 400%;
+  width: 100%;
+  overflow: scroll;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  animation: gradient 15s ease infinite;
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    20% {
+      background-position: 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+`;
 const MainContent = styled.div`
   flex-basis: 70%;
   display: flex;
@@ -210,6 +239,7 @@ const ResponseContainer = styled.div`
 const ResponseTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: normal;
+  color: "#000";
 `;
 
 const ResponseText = styled.div`
@@ -572,7 +602,11 @@ const defaultValues = {
 const Main = ({ loading, response, onClick }) => (
   <MainContent>
     <Title>⭐️ AI Trip Generater ⭐️</Title>
-    {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
+    {!response && (
+      <Subtitle style={{ color: "#000", margin: 10 }}>
+        Fill the form to generate your itinerary
+      </Subtitle>
+    )}
     <GenerateButton
       loading={loading}
       type="submit"
@@ -632,7 +666,12 @@ const ResponseData = ({ response }) => {
 };
 
 const GenerateButton = ({ loading, onClick }) => (
-  <Button onClick={onClick} disabled={loading} style={{ width: "20%" }}>
+  <Button
+    className="button-emrald"
+    onClick={onClick}
+    disabled={loading}
+    style={{ width: "20%", minWidth: "fit-content", marginTop: "20px" }}
+  >
     {loading ? "Please wait..." : "Generate"}
   </Button>
 );
@@ -722,9 +761,7 @@ const AITravelPlanner = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "destinationCountry") {
-      setDst(
-        value
-      )
+      setDst(value);
     }
     setValues((prevState) => ({
       ...prevState,
@@ -733,9 +770,7 @@ const AITravelPlanner = () => {
   };
 
   const handleLocationClick = (location) => {
-    setDst(
-      location.name
-    )
+    setDst(location.name);
     setValues((prevState) => ({
       ...prevState,
       destinationCountry: location.name,
@@ -770,22 +805,29 @@ const AITravelPlanner = () => {
     window.scrollTo(0, 980);
   }
 
-  function parseContent(content){
+  function parseContent(content) {
     let split = content.split("\n");
     let rem = false;
-    ["Unfortunately", "sorry", "Sorry", "unfortunately", "I cannot", "i cannot"].forEach((word) => {
-      if (split[0].includes(word)){
+    [
+      "Unfortunately",
+      "sorry",
+      "Sorry",
+      "unfortunately",
+      "I cannot",
+      "i cannot",
+    ].forEach((word) => {
+      if (split[0].includes(word)) {
         rem = true;
         split[0] = "";
         return;
       }
-    })
+    });
     let newContent = "";
     split.forEach((sent) => {
-      if (sent!==""){
-        newContent += sent+"\n"
+      if (sent !== "") {
+        newContent += sent + "\n";
       }
-    })
+    });
     return newContent;
   }
 
@@ -807,7 +849,7 @@ const AITravelPlanner = () => {
         setResponse(parsed);
         console.log(data.choices[0].message.content);
         setLoading(false);
-        return data.choices[0].message.content
+        return data.choices[0].message.content;
       })
       .catch((error) => {
         console.error("error", error);
@@ -818,11 +860,11 @@ const AITravelPlanner = () => {
   return (
     <>
       <Navbar navlinks={navlinks} />
-      <div className="py-16"></div>
+      {/* <PaddingDiv /> */}
       <Container>
         <Main loading={loading} response={response} onClick={handleSubmit} />
-        <Panel>
-          <FormContainer>
+        <Panel className="pt-16">
+          <FormContainer className="pt-16">
             <Label htmlFor="destinationCountry">Destination Country/City</Label>
             <Input
               type="text"
@@ -1057,12 +1099,7 @@ const AITravelPlanner = () => {
           </FormContainer>
         </Panel>
       </Container>
-      {
-        <MapShow
-          title={`Browse ${dst} Map`}
-          dst={dst}
-        />
-      }
+      {<MapShow title={`Browse ${dst} Map`} dst={dst} />}
       {<Weather dst={dst} />}
       {/* <div className="relative  md:mt-6 bg-gradient-to-b from-emerald-200 to-white">
         <div className="travigo-container" style={{ paddingBottom: "50px" }}>
