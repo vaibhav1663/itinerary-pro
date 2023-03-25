@@ -859,7 +859,7 @@ const AITravelPlanner = () => {
 
   return (
     <>
-      <Navbar navlinks={navlinks} />
+      <Navbar navlinks={navlinks} ctaVisible={false} />
       {/* <PaddingDiv /> */}
       <Container>
         <Main loading={loading} response={response} onClick={handleSubmit} />
