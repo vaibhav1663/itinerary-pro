@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 import BookmarkAdd from '@mui/icons-material/BookmarkAddOutlined';
 import { PropaneSharp } from '@mui/icons-material';
 
-export default function BasicCard(props) {
+export default function PopCard(props) {
   return (
     <Card variant="outlined" sx={{ width: 320 }}>
       <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
@@ -23,7 +23,7 @@ export default function BasicCard(props) {
           alt=""
         />
       </AspectRatio>
-      <Box sx={{ display: 'flex' }}>
+      {/* <Box sx={{ display: 'flex' }}>
         <div>
           <Typography level="body3">Total price:</Typography>
           <Typography fontSize="lg" fontWeight="lg">
@@ -41,7 +41,7 @@ export default function BasicCard(props) {
         >
           <a href={"https://www.makemytrip.com/tripideas/"+props.info.redirect} target="_blank" style={{fontWeight: "bold"}}>Explore</a>
         </Button>
-      </Box>
+      </Box> */}
     </Card>
   );
 }

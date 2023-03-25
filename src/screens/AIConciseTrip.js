@@ -79,10 +79,10 @@ const MainContent = styled.div`
 
 const Title = styled.h1`
   font-size: 4rem;
-  margin-top: 4rem;
+  margin-top: 7rem;
   color: #fff;
   font-weight: bold;
-  text-shadow: 0 0 10px #000;
+  text-shadow: 0 0 7px #000;
   /* text-shadow: #f4ffcf 1px 0 10px; */
   @media (max-width: 768px) {
     font-size: 2.4rem;
@@ -364,9 +364,8 @@ const defaultValues = {
 
 const Main = ({ loading, response }) => (
   <MainContent>
-    <Title>⭐️ AI Trip Generater ⭐️</Title>
-    {!response && <Subtitle>Fill the form to generate your itinerary</Subtitle>}
-
+    <Title> AI Trip Generator </Title>
+    {!response && <Subtitle><span style={{color: "black"}} >Fill the form to generate your itinerary</span></Subtitle>}
     {loading ? <Loading /> : response && <ResponseData response={response} />}
   </MainContent>
 );
