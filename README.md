@@ -14,7 +14,7 @@ npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Envoirnment Variables
+## Environment Variables
 ```
 REACT_APP_OPENAI_ENDPOINT_URL= <YOUR_OPENAI_ENDPOINT_URL>
 REACT_APP_CONCISE_PDF_AI_URL= <YOUR_CONCISE_PDF_AI_URL>
