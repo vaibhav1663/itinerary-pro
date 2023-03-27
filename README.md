@@ -1,4 +1,5 @@
 # Itinerary Pro
+![](.gitres/cover.png)
 Travel itinerary recommendation website that recommends popular tourist attractions and generates customized itineraries based on user preferences.
 
 [![React Badge](http://img.shields.io/badge/Powered%20By-React-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
