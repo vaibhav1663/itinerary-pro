@@ -14,6 +14,15 @@ npm start
 ```
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
+## Envoirnment Variables
+```
+REACT_APP_OPENAI_ENDPOINT_URL= <YOUR_OPENAI_ENDPOINT_URL>
+REACT_APP_CONCISE_PDF_AI_URL= <YOUR_CONCISE_PDF_AI_URL>
+REACT_APP_CONCISE_PDF_AI_ACCESS_TOKEN_URL= <YOUR_CONCISE_PDF_AI_ACCESS_TOKEN_URL>
+REACT_APP_CONCISE_PDF_AI_REFRESH_TOKEN= <YOUR_CONCISE_PDF_AI_REFRESH_TOKEN>
+REACT_APP_MAPKEY= <YOUR_GOOGLE_MAP_API_KEY>
+```
+
 ## Collaborators 🧑‍💻
 [Kartik Mandhan](https://github.com/kartikmandhan)<br>
 [Yash Suryawanshi](https://github.com/curiyash)<br>
