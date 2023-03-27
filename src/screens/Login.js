@@ -74,12 +74,9 @@ const Login = () => {
                             <LockOutlined />
                         </Avatar>
                         {error && <Alert variant="danger">{error}</Alert>}
-                        <Typography component="h1" variant="h5">
-                            Sign in
-                        </Typography>
                         <Box sx={{ mt: 1 }}>
                             <Typography component="h1" variant="h5">
-                                Login To start the Journey
+                                Login to start the journey
                             </Typography>
 
                         </Box>
