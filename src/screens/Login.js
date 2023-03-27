@@ -34,7 +34,7 @@ const Login = () => {
         e.preventDefault();
         try {
             await googleSignIn();
-            navigate("/profile");
+            navigate("/");
         } catch (error) {
             console.log(error.message);
         }
@@ -70,7 +70,7 @@ const Login = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{ m: 4, bgcolor: 'primary.main', width: 70, height: 70 }}>
+                        <Avatar src="logo512.png" sx={{ m: 4, p: 2, background: 'linear-gradient(to bottom,#10b981, #22c55e)', width: 150, height: 150 }}>
                             <LockOutlined />
                         </Avatar>
                         {error && <Alert variant="danger">{error}</Alert>}
